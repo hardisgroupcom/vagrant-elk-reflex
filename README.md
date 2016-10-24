@@ -8,6 +8,12 @@ Installs and configures reflex monitoring stack, with:
  * Grafana
 
 
+## Attributes
+
+### Redis configuration 
+In cookbooks/elk-hardis/attributes/default.rb
+* `default['elk-hardis']['redis_password']` - Password used by Redis (and Logstash)
+
 ## Getting Started
 
 ```
