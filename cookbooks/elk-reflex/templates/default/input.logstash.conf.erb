@@ -1,0 +1,25 @@
+input {
+    redis { 
+        host => "127.0.0.1"
+        password => "<%= @redis_password %>"
+        data_type => "list"
+        key => "wms"
+        add_field => [ "hardis_key", "reflex"]
+    } 
+}
+
+
+
+
+filter {
+    if [hardis_key] == "reflex" {
+
+        if[application]=="wms" {
+            mutate {
+                add_field=> {
+                    "type"=>"wagon"
+                }
+            }
+        }
+    }
+}   

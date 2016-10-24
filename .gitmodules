@@ -1,0 +1,3 @@
+[submodule "cookbooks/elk-hardis"]
+	path = cookbooks/elk-hardis
+	url = https://github.com/hardisgroupcom/chef-vagrant-elk-hardis
