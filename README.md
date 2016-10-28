@@ -68,7 +68,7 @@ You can collect any collectd data from [collectd](https://collectd.org) or from 
 
 ## Dependencies
 
-[chef-vagrant-elk-hardis](https://github.com/hardisgroupcom/chef-elk-hardis) - Hardis elk cookbook
+[chef-elk-hardis](https://github.com/hardisgroupcom/chef-elk-hardis) - Hardis elk cookbook
 
 ## License
 
