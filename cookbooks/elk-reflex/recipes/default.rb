@@ -7,5 +7,6 @@
 
 include_recipe 'elk-hardis::default'
 
+include_recipe 'elk-reflex::grokpatterns'
 include_recipe 'elk-reflex::logstash'
 include_recipe 'elk-reflex::grafana'

@@ -14,12 +14,95 @@ input {
 filter {
     if [hardis_key] == "reflex" {
 
-        if[application]=="wms" {
-            mutate {
-                add_field=> {
-                    "type"=>"wagon"
-                }
-            }
-        }
+        if [application]=="wms" {
+            
+			# Which key for wagon / middleware ?
+			
+			###########################################################################################################################
+			# If WAGON
+			
+				# Parse thread_name
+				#  Format userName_programName_sessionId_threadId_be1bbb81-a305-9dd2-6855-9ab22adf2afb_WagonApplication
+					# User name
+					
+					# Program name
+					
+					# Session id
+					
+					# Thread id
+				
+				if [thread_name] {
+					grok {
+						patterns_dir => ["/etc/logstash/grok-patterns"]
+						match => { "thread_name" => "%{WAGON_USERNAME:username}_%{WAGON_PROGRAM:program}_%{WAGON_SESSION:sessionId}_%{WAGON_THREAD:threadId}_.+_WagonApplication" }
+					}
+				}
+			
+				if [exception][stacktrace] {
+					
+					# Extract top of stacktrace
+					grok {
+						patterns_dir => ["/etc/logstash/grok-patterns"]
+						match => { "[exception][stacktrace]" => "(?m)\n%{WAGON_TOPSTACKTRACE:topStackTrace}" }
+					}
+				
+					# Look for Reflex program into the stacktrace
+					if ![reflexProgram] {
+						grok {
+							patterns_dir => ["/etc/logstash/grok-patterns"]
+							match => { "[exception][stacktrace]" => "(?m)at com\.hardis\.reflexcs\.%{WAGON_STACKTRACEPROGRAM:reflexProgram}" }
+						}
+					}
+				}
+				
+				# Set errorMsg from value extracted from stacktrace if any
+				if [exception][exception_message] {
+					mutate {
+						add_field => { "errorMsg" => "%{[exception][exception_class]}: %{[exception][exception_message]}" }
+						remove_field => ["[exception][exception_message]"]
+						remove_field => ["[exception][exception_class]"]
+					}
+				}
+				
+					
+				# Set program from value extracted from stacktrace if any
+				if [reflexProgram] {
+					mutate {
+						update => ["program", "%{reflexProgram}"]
+						# remove_field => ["reflexProgram"]
+					}
+				}
+				
+				
+			###########################################################################################################################
+			# IF MIDDLEWARE
+			
+			
+			
+			###########################################################################################################################
+			# For all
+					
+				# Define the origin by parsing program name
+				if [program] =~ /(^H|^RFX|SESMAN)/ {
+					mutate {
+						add_field => { "origin" => "standard" }
+					}
+				} else if [program] =~ /(^Wagon|^Adelia|PROCMN|CONSOL)/ {
+					mutate {
+						add_field => { "origin" => "adelia" }
+					}
+				} else if [program] =~ /^unknown$/ {
+					mutate {
+						add_field => { "origin" => "unknown" }
+					}
+				} else {
+					mutate {
+						add_field => { "origin" => "custom" }
+					}
+				}
+			
+				
+		}
+		
     }
 }   
