@@ -20,6 +20,9 @@ filter {
                     "type"=>"wagon"
                 }
             }
+            mutate {
+				add_field => { "msg" => "%{[message]} "}
+            }
         }
     }
-}   
+}
