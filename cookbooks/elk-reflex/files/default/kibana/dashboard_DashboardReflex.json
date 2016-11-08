@@ -1,0 +1,13 @@
+{
+  "title" : "DashboardReflex",
+  "hits" : 0,
+  "description" : "",
+  "panelsJSON" : "[{\"col\":1,\"id\":\"Trace-Activity\",\"panelIndex\":8,\"row\":3,\"size_x\":7,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"User-List\",\"panelIndex\":12,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":8,\"id\":\"Top-10-Error-Messages\",\"panelIndex\":13,\"row\":1,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"},{\"col\":3,\"id\":\"Server-Role\",\"panelIndex\":15,\"row\":1,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":6,\"id\":\"Error-Number\",\"panelIndex\":16,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"role\",\"message\"],\"id\":\"Error-List\",\"panelIndex\":17,\"row\":5,\"size_x\":7,\"size_y\":4,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"}]",
+  "optionsJSON" : "{\"darkTheme\":true}",
+  "uiStateJSON" : "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#584477\",\"wms-app\":\"#508642\"}}},\"P-8\":{\"vis\":{\"colors\":{\"DEBUG\":\"#CFFAFF\",\"ERROR\":\"#BF1B00\",\"INFO\":\"#0A50A1\",\"WARN\":\"#E5AC0E\"}}}}",
+  "version" : 1,
+  "timeRestore" : false,
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+  }
+}

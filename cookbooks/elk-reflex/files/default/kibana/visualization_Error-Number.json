@@ -1,0 +1,11 @@
+{
+  "title" : "Error Number",
+  "visState" : "{\"title\":\"New Visualization\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Errors\"}}],\"listeners\":{}}",
+  "uiStateJSON" : "{}",
+  "description" : "",
+  "savedSearchId" : "Error-List",
+  "version" : 1,
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"filter\":[]}"
+  }
+}
