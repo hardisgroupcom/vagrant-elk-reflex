@@ -19,6 +19,8 @@ kibana_element_dir = '/vagrant/cookbooks/elk-reflex/files/default/kibana'
 
 bash 'kibana creating index' do
   code <<-EOH
+curl -XDELETE #{url_elasticsearch}/logstash-*
+curl -XPOST #{url_elasticsearch}/_template/reflex --data "@#{kibana_element_dir}/template_reflex.json"
 curl -XPOST #{url_elasticsearch}/.kibana/index-pattern/logstash-* -d '{"title" : "logstash-*",  "timeFieldName": "@timestamp"}'
 curl -XPUT #{url_elasticsearch}/.kibana/config/4.6.1 -d '{"defaultIndex" : "logstash-*"}'
     EOH

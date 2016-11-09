@@ -15,11 +15,7 @@ filter {
     if [hardis_key] == "reflex" {
 
         if [application] == "wms" {
-            
-            mutate {
-				add_field => { "msg" => "%{[message]} "}
-            }
-			
+            			
 			# Manage API trace message
 			
 			

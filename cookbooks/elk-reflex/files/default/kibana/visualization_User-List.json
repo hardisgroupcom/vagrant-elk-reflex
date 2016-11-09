@@ -1,6 +1,6 @@
 {
   "title" : "User List",
-  "visState" : "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":5,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"mdc.wagonSessionId.raw\",\"customLabel\":\"Session Number\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"mdc.username.raw\",\"exclude\":{\"pattern\":\"notlogged\"},\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Username\"}}],\"listeners\":{}}",
+  "visState" : "{\"title\":\"New Visualization\",\"type\":\"table\",\"params\":{\"perPage\":5,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"mdc.wagonSessionId\",\"customLabel\":\"Session Number\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"mdc.username\",\"exclude\":{\"pattern\":\"notlogged\"},\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Username\"}}],\"listeners\":{}}",
   "uiStateJSON" : "{}",
   "description" : "",
   "version" : 1,
