@@ -69,6 +69,8 @@
               ],
               "measurement": "wagon_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"wagon_value\" WHERE \"instance\" = 'reflex_web-wagon' AND \"type_instance\" = 'activePrograms' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -89,13 +91,19 @@
                 {
                   "key": "instance",
                   "operator": "=",
-                  "value": "reflex_web-wagon"
+                  "value": "web-server-wagon"
                 },
                 {
                   "condition": "AND",
                   "key": "type_instance",
                   "operator": "=",
                   "value": "activePrograms"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             },
@@ -119,6 +127,8 @@
               "hide": false,
               "measurement": "wagon_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"wagon_value\" WHERE \"instance\" = 'reflex_web-wagon' AND \"type_instance\" = 'activeSessions' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -139,13 +149,19 @@
                 {
                   "key": "instance",
                   "operator": "=",
-                  "value": "reflex_web-wagon"
+                  "value": "web-server-wagon"
                 },
                 {
                   "condition": "AND",
                   "key": "type_instance",
                   "operator": "=",
                   "value": "activeSessions"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             }
@@ -169,7 +185,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             },
             {
@@ -177,7 +193,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             }
           ]
@@ -247,6 +263,8 @@
               ],
               "measurement": "wagon_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"wagon_value\" WHERE \"type_instance\" = 'CountCacheableProperty' AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -268,6 +286,12 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "CountCacheableProperty"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             },
@@ -290,6 +314,8 @@
               ],
               "measurement": "wagon_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"wagon_value\" WHERE \"type_instance\" = 'PercentSearchPropertyInCache' AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -353,7 +379,7 @@
     {
       "collapse": false,
       "editable": true,
-      "height": "250px",
+      "height": 217.64996337890625,
       "panels": [
         {
           "aliasColors": {},
@@ -399,14 +425,22 @@
             {
               "alias": "TotalPhysicalMemorySize",
               "yaxis": 1
+            },
+            {
+              "alias": "Process Cpu Load",
+              "yaxis": 2
+            },
+            {
+              "alias": "System Cpu Load",
+              "yaxis": 2
             }
           ],
-          "span": 9,
+          "span": 6.748900984121667,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "alias": "SystemCpuLoad",
+              "alias": "System Cpu Load",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -422,8 +456,11 @@
                   "type": "fill"
                 }
               ],
+              "hide": false,
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'SystemCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -436,7 +473,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -445,11 +482,17 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "SystemCpuLoad"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             },
             {
-              "alias": "ProcessCpuLoad",
+              "alias": "Process Cpu Load",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -467,6 +510,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'ProcessCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -492,7 +537,7 @@
               ]
             },
             {
-              "alias": "TotalPhysicalMemorySize",
+              "alias": "Total Physical Memory",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -510,6 +555,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'TotalPhysicalMemorySize' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "C",
               "resultFormat": "time_series",
               "select": [
@@ -535,7 +582,7 @@
               ]
             },
             {
-              "alias": "FreePhysicalMemorySize",
+              "alias": "Free Physical Memory",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -553,6 +600,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'FreePhysicalMemorySize' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "D",
               "resultFormat": "time_series",
               "select": [
@@ -578,7 +627,7 @@
               ]
             },
             {
-              "alias": "CommittedVirtualMemorySize",
+              "alias": "Committed Virtual Memory",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -596,6 +645,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'CommittedVirtualMemorySize' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "E",
               "resultFormat": "time_series",
               "select": [
@@ -623,7 +674,7 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Tomcat OS",
+          "title": "OS by JVM",
           "tooltip": {
             "msResolution": true,
             "shared": true,
@@ -636,19 +687,19 @@
           },
           "yaxes": [
             {
-              "format": "short",
-              "label": null,
+              "format": "bytes",
+              "label": "Mem",
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             },
             {
-              "format": "short",
-              "label": null,
+              "format": "percentunit",
+              "label": "CPU",
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             }
           ]
@@ -656,7 +707,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
@@ -670,6 +721,271 @@
             "maxValue": 100,
             "minValue": 0,
             "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": false
+          },
+          "id": 15,
+          "interval": "",
+          "isNew": true,
+          "links": [],
+          "mappingType": 2,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "0",
+              "text": "Web Server",
+              "to": "9999999999999999"
+            },
+            {
+              "from": "null",
+              "text": "Web Server",
+              "to": "null"
+            }
+          ],
+          "span": 1,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND time > now() - 30s GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1,0.1",
+          "title": "",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            },
+            {
+              "op": "=",
+              "text": "",
+              "value": ""
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "Collectd",
+          "editable": true,
+          "error": false,
+          "format": "none",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 16,
+          "interval": ">10s",
+          "isNew": true,
+          "links": [],
+          "mappingType": 2,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "0",
+              "text": "Business Server",
+              "to": "9999999999999999999999"
+            },
+            {
+              "from": "null",
+              "text": "Business Server",
+              "to": "null"
+            }
+          ],
+          "span": 1.174320236908342,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^business\\-server\\-/ AND time > now() - 30s GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "count"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "0.1,0.1",
+          "title": "",
+          "transparent": false,
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            },
+            {
+              "op": "=",
+              "text": "",
+              "value": ""
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Collectd",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 1,
+            "minValue": 0,
+            "show": true,
             "thresholdLabels": false,
             "thresholdMarkers": true
           },
@@ -728,7 +1044,7 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
-              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'ProcessCpuLoad'",
+              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'ProcessCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -751,11 +1067,17 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "ProcessCpuLoad"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             }
           ],
-          "thresholds": "",
+          "thresholds": "0.85,0.95",
           "title": "Process CPU Load",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -778,9 +1100,10 @@
             "rgba(245, 54, 54, 0.9)"
           ],
           "datasource": "Collectd",
+          "decimals": 2,
           "editable": true,
           "error": false,
-          "format": "none",
+          "format": "percentunit",
           "gauge": {
             "maxValue": 1,
             "minValue": 0,
@@ -843,7 +1166,7 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
-              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'SystemCpuLoad'",
+              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'SystemCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -866,11 +1189,23 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "SystemCpuLoad"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "type_instance",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             }
           ],
-          "thresholds": "0.8,0.9,0.95",
+          "thresholds": "0.85,0.95",
           "title": "System CPU Load",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -904,7 +1239,7 @@
           "mode": "time",
           "offsetFromUtc": null,
           "offsetFromUtcMinutes": null,
-          "span": 1,
+          "span": 1.0767787789699916,
           "timeSettings": {
             "customFormat": "HH:mm:ss",
             "fontSize": "30px",
@@ -959,7 +1294,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "alias": "Heap Max",
+              "alias": "Max",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -975,8 +1310,11 @@
                   "type": "fill"
                 }
               ],
+              "hide": false,
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_max' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -998,11 +1336,23 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "Heap_max"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=",
+                  "value": "reflex_web-Memory"
                 }
               ]
             },
             {
-              "alias": "Heap Used",
+              "alias": "Used",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1020,6 +1370,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_used' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -1045,7 +1397,7 @@
               ]
             },
             {
-              "alias": "Heap Commited",
+              "alias": "Commited",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1063,6 +1415,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_committed' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "C",
               "resultFormat": "time_series",
               "select": [
@@ -1133,6 +1487,223 @@
             "threshold2": null,
             "threshold2Color": "rgba(234, 112, 112, 0.22)"
           },
+          "id": 14,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_max' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "Heap_max"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=",
+                  "value": "reflex_batch-Memory"
+                }
+              ]
+            },
+            {
+              "alias": "Used",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_used' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "Heap_used"
+                }
+              ]
+            },
+            {
+              "alias": "Commited",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'Heap_committed' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "Heap_committed"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Middleware JVM Heap",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Collectd",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
           "id": 6,
           "isNew": true,
           "legend": {
@@ -1158,7 +1729,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "alias": "Heap Max",
+              "alias": "Max",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1176,6 +1747,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_max' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -1197,11 +1770,23 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "NonHeap_max"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=",
+                  "value": "reflex_web-Memory"
                 }
               ]
             },
             {
-              "alias": "Heap Used",
+              "alias": "Used",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1219,6 +1804,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_used' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -1244,7 +1831,7 @@
               ]
             },
             {
-              "alias": "Heap Commited",
+              "alias": "Commited",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1262,6 +1849,8 @@
               ],
               "measurement": "java.lang_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_committed' AND \"host\" =~ /^$host$/ AND \"instance\" = 'web-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "C",
               "resultFormat": "time_series",
               "select": [
@@ -1290,6 +1879,223 @@
           "timeFrom": null,
           "timeShift": null,
           "title": "Tomcat JVM Non Heap",
+          "tooltip": {
+            "msResolution": true,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Collectd",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 13,
+          "isNew": true,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Max",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_max' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "NonHeap_max"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "instance",
+                  "operator": "=",
+                  "value": "reflex_batch-Memory"
+                }
+              ]
+            },
+            {
+              "alias": "Used",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_used' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "NonHeap_used"
+                }
+              ]
+            },
+            {
+              "alias": "Commited",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "java.lang_value",
+              "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'NonHeap_committed' AND \"host\" =~ /^$host$/ AND \"instance\" = 'business-server-Memory' AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "type_instance",
+                  "operator": "=",
+                  "value": "NonHeap_committed"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Middleware JVM Non Heap",
           "tooltip": {
             "msResolution": true,
             "shared": true,
@@ -1365,7 +2171,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "alias": "currentThreadCount",
+              "alias": "Thread Count",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1383,6 +2189,8 @@
               ],
               "measurement": "tomcat_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"tomcat_value\" WHERE \"type_instance\" = 'count' AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -1404,11 +2212,17 @@
                   "key": "type_instance",
                   "operator": "=",
                   "value": "count"
+                },
+                {
+                  "condition": "AND",
+                  "key": "host",
+                  "operator": "=~",
+                  "value": "/^$host$/"
                 }
               ]
             },
             {
-              "alias": "currentThreadsBusy",
+              "alias": "Threads Busy",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -1426,6 +2240,8 @@
               ],
               "measurement": "tomcat_value",
               "policy": "default",
+              "query": "SELECT mean(\"value\") FROM \"tomcat_value\" WHERE \"type_instance\" = 'busy' AND \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -1482,181 +2298,27 @@
               "show": true
             }
           ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Collectd",
-          "editable": true,
-          "error": false,
-          "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
-          "id": 3,
-          "isNew": true,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 2,
-          "links": [],
-          "nullPointMode": "connected",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "alias": "bytesReceived",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "tomcat_value",
-              "policy": "default",
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "instance",
-                  "operator": "=",
-                  "value": "reflex_web-GlobalRequestProcessor \"http-nio-80\""
-                },
-                {
-                  "condition": "AND",
-                  "key": "type_instance",
-                  "operator": "=",
-                  "value": "received"
-                }
-              ]
-            },
-            {
-              "alias": "bytesSent",
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "$interval"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "tomcat_value",
-              "policy": "default",
-              "refId": "B",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "value"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "instance",
-                  "operator": "=",
-                  "value": "reflex_web-GlobalRequestProcessor \"http-nio-80\""
-                },
-                {
-                  "condition": "AND",
-                  "key": "type_instance",
-                  "operator": "=",
-                  "value": "sent"
-                }
-              ]
-            }
-          ],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Tomcat GlobalRequestProcessor",
-          "tooltip": {
-            "msResolution": true,
-            "shared": true,
-            "sort": 0,
-            "value_type": "cumulative"
-          },
-          "type": "graph",
-          "xaxis": {
-            "show": true
-          },
-          "yaxes": [
-            {
-              "format": "bytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
         }
       ],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": 9.775000000000091,
+      "panels": [],
+      "title": "New row"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [],
       "title": "New row"
     }
   ],
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1685,14 +2347,92 @@
     ]
   },
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {},
+        "datasource": "Collectd",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Server Name",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"java.lang_value\" WITH KEY = \"host\"",
+        "refresh": 1,
+        "type": "query"
+      },
+      {
+        "auto": true,
+        "auto_count": 300,
+        "auto_min": "10s",
+        "current": {
+          "text": "10s",
+          "value": "10s"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": true,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          }
+        ],
+        "query": "10s,1m,10m,30m,1h,6h,12h,1d",
+        "refresh": 0,
+        "type": "interval"
+      }
+    ]
   },
   "annotations": {
     "list": []
   },
   "refresh": "5s",
   "schemaVersion": 12,
-  "version": 0,
+  "version": 13,
   "links": [],
   "gnetId": null
 }
