@@ -6,7 +6,9 @@
   "optionsJSON" : "{\"darkTheme\":true}",
   "uiStateJSON" : "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#584477\",\"wms-app\":\"#508642\"}}},\"P-8\":{\"vis\":{\"colors\":{\"DEBUG\":\"#CFFAFF\",\"ERROR\":\"#BF1B00\",\"INFO\":\"#0A50A1\",\"WARN\":\"#E5AC0E\"}}}}",
   "version" : 1,
-  "timeRestore" : false,
+  "timeRestore" : true,
+  "timeTo" : "now",
+  "timeFrom" : "now-1h",
   "kibanaSavedObjectMeta" : {
     "searchSourceJSON" : "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
   }
