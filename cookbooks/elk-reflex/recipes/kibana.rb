@@ -8,6 +8,7 @@
 #################################
 #KIBANA
 #################################
+
 url_elasticsearch = 'http://localhost:9200'
 kibana_element_dir = '/vagrant/cookbooks/elk-reflex/files/default/kibana'
 #
@@ -24,6 +25,8 @@ curl -XPOST #{url_elasticsearch}/_template/reflex --data "@#{kibana_element_dir}
 curl -XPOST #{url_elasticsearch}/.kibana/index-pattern/logstash-* -d '{"title" : "logstash-*",  "timeFieldName": "@timestamp"}'
 curl -XPUT #{url_elasticsearch}/.kibana/config/4.6.1 -d '{"defaultIndex" : "logstash-*"}'
     EOH
+  retries 3
+  retry_delay 5
 end
 
 bash 'kibana creating searches' do
