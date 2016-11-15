@@ -3,7 +3,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/centos-7.2"
   config.vm.box_version = "2.2.7"
-  
+  config.vm.define "reflex-trace-server"
   config.vm.box_check_update = false
 
   #Kibana
@@ -17,7 +17,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 6379, host: 6379
   #Infludb/CollectD
   config.vm.network :forwarded_port, guest: 25826, host: 25826, protocol: "udp"
-
   
 
   config.vm.synced_folder "cookbooks/elk-hardis/files/default/rpms", "/chef/elk-hardis/rpms"
@@ -27,7 +26,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "2048"
   end
 
   config.vm.provision "chef_solo" do |chef|
