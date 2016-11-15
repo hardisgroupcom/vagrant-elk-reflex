@@ -54,7 +54,7 @@ Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://loc
 
 InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826)
 
-InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25826](udp://localhost:25827)
+InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
 
 You can collect any log4j or logback to redis by using :
 * [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
