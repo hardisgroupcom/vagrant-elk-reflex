@@ -392,7 +392,8 @@
             "threshold1": null,
             "threshold1Color": "rgba(216, 200, 27, 0.27)",
             "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+            "threshold2Color": "rgba(234, 112, 112, 0.22)",
+            "thresholdLine": false
           },
           "id": 7,
           "isNew": true,
@@ -459,7 +460,7 @@
               "hide": false,
               "measurement": "java.lang_value",
               "policy": "default",
-              "query": "SELECT last(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'SystemCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "query": "SELECT mean(\"value\") FROM \"java.lang_value\" WHERE \"type_instance\" = 'SystemCpuLoad' AND \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-server\\-/ AND $timeFilter GROUP BY time($interval) fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -702,7 +703,8 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "decimals": 2
         },
         {
           "cacheTimeout": null,
@@ -1461,7 +1463,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             },
             {
@@ -1469,7 +1471,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             }
           ]
@@ -1895,7 +1897,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             },
             {
@@ -1903,7 +1905,7 @@
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             }
           ]
@@ -2283,21 +2285,22 @@
           "yaxes": [
             {
               "format": "short",
-              "label": null,
+              "label": "Number",
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             },
             {
               "format": "short",
-              "label": null,
+              "label": "",
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": 0,
               "show": true
             }
-          ]
+          ],
+          "decimals": 0
         }
       ],
       "title": "New row"
