@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 6379, host: 6379
   #Infludb/CollectD
   config.vm.network :forwarded_port, guest: 25826, host: 25826, protocol: "udp"
+  #Infludb/Telegraf
+  config.vm.network :forwarded_port, guest: 25827, host: 25827, protocol: "udp"
   
 
   config.vm.synced_folder "cookbooks/elk-hardis/files/default/rpms", "/chef/elk-hardis/rpms"

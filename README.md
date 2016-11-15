@@ -11,12 +11,6 @@ This vagrant box installs a ready to use monitoring stack.
  * Grafana 3.1.1
 
 
-## Attributes
-
-### Redis configuration 
-In cookbooks/elk-hardis/attributes/default.rb
-* `default['elk-hardis']['redis_password']` - Password used by Redis (and Logstash)
-
 ## Prerequisites
 
 [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http://www.vagrantup.com/) (minimum version 1.6)
@@ -58,7 +52,9 @@ Grafana  is available on the host machine at [http://localhost:3000/](http://loc
  
 Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://localhost:6379)
 
-InfluxDB is collecting data on the host machine at [udp://localhost:25826](udp://localhost:25826)
+InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826)
+
+InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25826](udp://localhost:25827)
 
 You can collect any log4j or logback to redis by using :
 * [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
