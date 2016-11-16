@@ -37,6 +37,11 @@ To log in to the machine run:
 
     vagrant ssh
 
+## Auto start
+
+To start the monitoring virtual box automatically on Windows, you can use [VBoxVmService](http://vboxvmservice.sourceforge.net/).
+
+	
 ## Limitation
 * This stack is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 * This stack is ready to use for **development purpose** and as a standalone stack. 
@@ -56,11 +61,14 @@ InfluxDB is collecting Collectd data on the host machine at [udp://localhost:258
 
 InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
 
-You can collect any log4j or logback to redis by using :
+You can collect any log4j to redis by using :
 * [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
-* [logback-redis-appender](https://github.com/hardisgroupcom/logback-redis-appender)
 
 You can collect any collectd data from [collectd](https://collectd.org) or from a jvm by using [jcollectd](https://github.com/hardisgroupcom/jcollectd)
+
+You can collect system data by using [Telegraf](https://www.influxdata.com/downloads/)
+
+
 
 ## Dependencies
 
