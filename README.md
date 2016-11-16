@@ -61,8 +61,7 @@ InfluxDB is collecting Collectd data on the host machine at [udp://localhost:258
 
 InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
 
-You can collect any log4j to redis by using :
-* [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
+You can collect any log4j to redis by using [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
 
 You can collect any collectd data from [collectd](https://collectd.org) or from a jvm by using [jcollectd](https://github.com/hardisgroupcom/jcollectd)
 
