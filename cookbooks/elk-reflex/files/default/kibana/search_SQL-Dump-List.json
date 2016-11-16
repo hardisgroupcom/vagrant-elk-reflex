@@ -1,0 +1,11 @@
+{
+  "title" : "SQL Dump List",
+  "description" : "",
+  "hits" : 0,
+  "columns" : [ "mdc.program", "sql_cursor", "sql_table", "sql_request", "sql_param", "sql_code", "sql_nanoTime" ],
+  "sort" : [ "@timestamp", "desc" ],
+  "version" : 1,
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"logstash-*\",\"key\":\"logger_name\",\"negate\":false,\"value\":\"hasqllogger.dump\"},\"query\":{\"match\":{\"logger_name\":{\"query\":\"hasqllogger.dump\",\"type\":\"phrase\"}}}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+  }
+}

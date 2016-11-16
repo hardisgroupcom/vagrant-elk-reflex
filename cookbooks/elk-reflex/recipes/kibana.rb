@@ -32,6 +32,8 @@ end
 bash 'kibana creating searches' do
   code <<-EOH
 curl -XPOST #{url_elasticsearch}/.kibana/search/Error-List --data "@#{kibana_element_dir}/search_Error-List.json"
+curl -XPOST #{url_elasticsearch}/.kibana/search/Message-List --data "@#{kibana_element_dir}/search_Message-List.json"
+curl -XPOST #{url_elasticsearch}/.kibana/search/SQL-Dump-List --data "@#{kibana_element_dir}/search_SQL-Dump-List-List.json"
     EOH
 end
 
@@ -43,6 +45,9 @@ curl -XPOST #{url_elasticsearch}/.kibana/visualization/Top-10-Error-Messages --d
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/Error-Number --data "@#{kibana_element_dir}/visualization_Error-Number.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/User-List --data "@#{kibana_element_dir}/visualization_User-List.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/Server-Role --data "@#{kibana_element_dir}/visualization_Server-Role.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Trace-Origin --data "@#{kibana_element_dir}/visualization_Trace-Origin.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Cursor --data "@#{kibana_element_dir}/visualization_SQL-Cursor.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Dump-Repartition --data "@#{kibana_element_dir}/visualization_SQL-Dump-Repartition.json"
     EOH
 end
 

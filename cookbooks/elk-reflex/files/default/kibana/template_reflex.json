@@ -14,6 +14,10 @@
 				"index" : "not_analyzed",
 				"type" : "string"
 			  },
+			  "error_msg" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
 			  "file" : {
 				"index" : "not_analyzed",
 				"type" : "string"
@@ -83,11 +87,43 @@
 				"index" : "not_analyzed",
 				"type" : "string"
 			  },
+			  "origin" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
 			  "role" : {
 				"index" : "not_analyzed",
 				"type" : "string"
 			  },
 			  "source_host" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_request" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_cursor" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_param" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_nanoTime" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_code" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_state" : {
+				"index" : "not_analyzed",
+				"type" : "string"
+			  },
+			  "sql_table" : {
 				"index" : "not_analyzed",
 				"type" : "string"
 			  },

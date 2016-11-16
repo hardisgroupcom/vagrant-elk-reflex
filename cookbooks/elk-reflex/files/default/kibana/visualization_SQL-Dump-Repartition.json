@@ -1,0 +1,11 @@
+{
+  "title" : "SQL Dump Repartition",
+  "visState" : "{\"title\":\"New Visualization\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"mdc.program\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Program\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"sql_cursor\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Cursor\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"sql_table\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Table\"}}],\"listeners\":{}}",
+  "uiStateJSON" : "{}",
+  "description" : "",
+  "savedSearchId" : "SQL-Dump-List",
+  "version" : 1,
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"filter\":[]}"
+  }
+}
