@@ -11,7 +11,7 @@ template '/etc/logstash/conf.d/reflex.logstash.conf' do
     owner 'elk'
     group 'elk'
     variables({
-        :redis_password => node['elk-reflex']['redis_password']
+        :redis_password => node['elk-hardis']['redis_password']
     })
 end
 

@@ -1,1 +1,2 @@
-default['elk-reflex']['redis_password'] = 'changeMe'
+
+# default['elk-reflex']['redis_password'] = 'changeMe'
