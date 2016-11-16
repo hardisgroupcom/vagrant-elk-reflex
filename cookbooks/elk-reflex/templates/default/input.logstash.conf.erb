@@ -16,8 +16,95 @@ filter {
 
         if [application] == "wms" {
             			
-			# Manage API trace message
+			# Create an error message field
+			if [level] == "ERROR" {
+				mutate {
+					add_field => { "error_msg" => "%{message}" }
+				}
+			}
+						
+			# Manage SQL dump message
+			grok {
+			  match=> { "message" => "cursor\:\s%{DATA:sql_cursor};" }
+			}
+			grok {
+			  match=> { "message" => "request\:\s%{DATA:sql_request};" }
+			}
+			grok {
+			  match=> { "message" => "parameters\:\s%{DATA:sql_param};" }
+			}
+			grok {
+			  match=> { "message" => "code\:\s%{DATA:sql_code};" }
+			}
+			grok {
+			  match=> { "message" => "nanoTime\:\s%{NUMBER:sql_nanoTime}" }
+			}
+			grok {
+			  match=> { "message" => "fetch\:\s%{DATA:sql_fetch};" }
+			}
+			grok {
+			  match=> { "message" => "command\:\s%{DATA:sql_command};" }
+			}
 			
+			# Save fetch into field sql_request
+			if [sql_fetch] {
+				mutate {
+					add_field => { "sql_request" => "fetch : %{sql_fetch}" }
+					remove_field => [ "sql_fetch" ]
+				}
+			}
+			# Save command into field sql_request
+			if [sql_command] {
+				mutate {
+					add_field => { "sql_request" => "command : %{sql_command}" }
+					remove_field => [ "sql_command" ]
+				}
+			}
+			
+			# Detect SQL table
+			grok {
+			  match=> { "sql_request" => "(select|delete)\s+from\s+%{DATA:sql_table}\s+" }
+			}
+			grok {
+			  match=> { "sql_request" => "update\s+%{DATA:sql_table}\s+" }
+			}
+			grok {
+			  match=> { "sql_request" => "insert\s+into\s+%{DATA:sql_table}\s+" }
+			}
+			
+			# Detect SQL error message
+			if [error_msg] {
+				if [class] =~ /com\.hardis\.adelia\.jdbc\./ {
+					grok {
+					  match=> { "error_msg" => "sqlcode\s%{DATA:sql_code}," }
+					}
+					grok {
+					  match=> { "error_msg" => "sqlstate\s'%{DATA:sql_state}'," }
+					}
+				}
+				else {
+					mutate {
+						add_field => { "sql_code" => "NA" }
+						add_field => { "sql_state" => "NA" }
+					}
+				}
+			}
+			
+			# Detect the origin of the program
+			if [mdc][program] =~ /(^H|^RFX|SESMAN)/ {
+                mutate {
+                    add_field => { "origin" => "standard" }
+                }
+			} else if [mdc][program] =~ /(^Wagon|^Adelia|PROCMN|CONSOL)/ {
+                mutate {
+                    add_field => { "origin" => "adelia" }
+                }
+			} else {
+                mutate {
+                    add_field => { "origin" => "custom" }
+                }
+			}
+
 			
         }
     }
