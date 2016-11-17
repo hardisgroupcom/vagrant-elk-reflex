@@ -11,7 +11,7 @@
     {
       "collapse": false,
       "editable": true,
-      "height": 203.98748779296875,
+      "height": 289.54998779296875,
       "panels": [
         {
           "bgColor": null,
@@ -34,16 +34,16 @@
           "mode": "time",
           "offsetFromUtc": null,
           "offsetFromUtcMinutes": null,
-          "span": 2.2537651540844026,
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
+          "span": 1.1919189197747793,
           "timeSettings": {
             "customFormat": "HH:mm:ss",
             "fontSize": "30px",
             "fontWeight": "bold"
           },
           "title": "Clock",
-          "type": "grafana-clock-panel",
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          "type": "grafana-clock-panel"
         },
         {
           "cacheTimeout": null,
@@ -99,6 +99,8 @@
               "to": "null"
             }
           ],
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
           "span": 1,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -175,9 +177,7 @@
               "value": ""
             }
           ],
-          "valueName": "avg",
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          "valueName": "avg"
         },
         {
           "cacheTimeout": null,
@@ -233,6 +233,8 @@
               "to": "null"
             }
           ],
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
           "span": 1.174320236908342,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -309,9 +311,7 @@
               "value": ""
             }
           ],
-          "valueName": "avg",
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          "valueName": "avg"
         },
         {
           "cacheTimeout": null,
@@ -363,7 +363,9 @@
               "to": "null"
             }
           ],
-          "span": 1,
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
+          "span": 1.857322405571718,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -431,9 +433,7 @@
               "value": "null"
             }
           ],
-          "valueName": "avg",
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          "valueName": "avg"
         },
         {
           "cacheTimeout": null,
@@ -485,7 +485,9 @@
               "to": "null"
             }
           ],
-          "span": 1.0163963669014775,
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
+          "span": 1.8932528316226462,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -541,10 +543,357 @@
               "value": "null"
             }
           ],
-          "valueName": "avg",
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          "valueName": "avg"
         },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Telegraf",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 20,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.2238493723849366,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mem",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^C/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true
+            }
+          ],
+          "thresholds": "80,90",
+          "title": "Drive C",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Telegraf",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 21,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.2736124634858825,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mem",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^D/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true
+            }
+          ],
+          "thresholds": "80,90",
+          "title": "Drive D",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Telegraf",
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "id": 22,
+          "interval": null,
+          "isNew": true,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 1.3771179709973196,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "mem",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_percent"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [],
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^\\// AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true
+            }
+          ],
+          "thresholds": "80,90",
+          "title": "Drive /",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        }
+      ],
+      "repeat": "isWebServer",
+      "scopedVars": {
+        "isWebServer": {
+          "text": "None",
+          "value": "",
+          "isNone": true,
+          "selected": true
+        }
+      },
+      "showTitle": true,
+      "title": "System"
+    },
+    {
+      "title": "SYSTEM CPU Details",
+      "height": "250px",
+      "editable": true,
+      "collapse": true,
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
@@ -578,8 +927,10 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
           "seriesOverrides": [],
-          "span": 11.980256946515837,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -602,6 +953,8 @@
               ],
               "measurement": "cpu",
               "policy": "default",
+              "query": "SELECT mean(\"usage_user\") FROM \"cpu\" WHERE \"host\" =~ /^$host$/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -744,10 +1097,17 @@
               "min": 0,
               "show": true
             }
-          ],
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
-        },
+          ]
+        }
+      ],
+      "showTitle": true
+    },
+    {
+      "title": "SYSTEM MEM Details",
+      "height": "250px",
+      "editable": true,
+      "collapse": true,
+      "panels": [
         {
           "aliasColors": {
             "total": "#BF1B00"
@@ -783,6 +1143,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "repeatIteration": 1479384397076,
+          "scopedVars": {},
           "seriesOverrides": [],
           "span": 12,
           "stack": false,
@@ -907,22 +1269,10 @@
               "min": 0,
               "show": true
             }
-          ],
-          "scopedVars": {},
-          "repeatIteration": 1479209621843
+          ]
         }
       ],
-      "repeat": "isWebServer",
-      "showTitle": true,
-      "title": "System",
-      "scopedVars": {
-        "isWebServer": {
-          "text": "None",
-          "value": "",
-          "isNone": true,
-          "selected": true
-        }
-      }
+      "showTitle": true
     },
     {
       "collapse": false,
@@ -1322,6 +1672,14 @@
           "points": false,
           "renderer": "flot",
           "repeat": "isWebServer",
+          "scopedVars": {
+            "isWebServer": {
+              "text": "None",
+              "value": "",
+              "isNone": true,
+              "selected": true
+            }
+          },
           "seriesOverrides": [],
           "span": null,
           "stack": false,
@@ -1506,15 +1864,7 @@
               "min": 0,
               "show": true
             }
-          ],
-          "scopedVars": {
-            "isWebServer": {
-              "text": "None",
-              "value": "",
-              "isNone": true,
-              "selected": true
-            }
-          }
+          ]
         },
         {
           "aliasColors": {},
@@ -2487,9 +2837,8 @@
   "annotations": {
     "list": []
   },
-  "refresh": "5s",
   "schemaVersion": 12,
-  "version": 13,
+  "version": 5,
   "links": [
     {
       "icon": "external link",
