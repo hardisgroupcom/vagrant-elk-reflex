@@ -54,6 +54,7 @@ end
 
 bash 'kibana creating dashboard' do
   code <<-EOH
-curl -XPOST #{url_elasticsearch}/.kibana/dashboard/DashboardReflex --data "@#{kibana_element_dir}/dashboard_DashboardReflex.json"
+curl -XPOST #{url_elasticsearch}/.kibana/dashboard/Main-Reflex --data "@#{kibana_element_dir}/dashboard_Main-Reflex.json"
+curl -XPOST #{url_elasticsearch}/.kibana/dashboard/SQL-Dump-Reflex --data "@#{kibana_element_dir}/dashboard_SQL-Dump-Reflex.json"
     EOH
 end

@@ -1,0 +1,15 @@
+{
+  "title" : "SQL Dump Reflex",
+  "hits" : 0,
+  "description" : "",
+  "panelsJSON" : "[{\"col\":1,\"id\":\"User-List\",\"panelIndex\":12,\"row\":4,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Server-Role\",\"panelIndex\":15,\"row\":1,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"mdc.program\",\"sql_cursor\",\"sql_table\",\"sql_request\",\"sql_param\",\"sql_code\",\"sql_nanoTime\"],\"id\":\"SQL-Dump-List\",\"panelIndex\":22,\"row\":6,\"size_x\":12,\"size_y\":8,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":4,\"id\":\"SQL-Dump-Repartition\",\"panelIndex\":23,\"row\":1,\"size_x\":5,\"size_y\":5,\"type\":\"visualization\"}]",
+  "optionsJSON" : "{\"darkTheme\":true}",
+  "uiStateJSON" : "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#614D93\",\"web-server\":\"#0A50A1\",\"wms-app\":\"#508642\"},\"legendOpen\":true}}}",
+  "version" : 1,
+  "timeRestore" : true,
+  "timeTo" : "now",
+  "timeFrom" : "now-4h",
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+  }
+}
