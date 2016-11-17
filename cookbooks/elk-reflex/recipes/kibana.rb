@@ -33,7 +33,7 @@ bash 'kibana creating searches' do
   code <<-EOH
 curl -XPOST #{url_elasticsearch}/.kibana/search/Error-List --data "@#{kibana_element_dir}/search_Error-List.json"
 curl -XPOST #{url_elasticsearch}/.kibana/search/Message-List --data "@#{kibana_element_dir}/search_Message-List.json"
-curl -XPOST #{url_elasticsearch}/.kibana/search/SQL-Dump-List --data "@#{kibana_element_dir}/search_SQL-Dump-List-List.json"
+curl -XPOST #{url_elasticsearch}/.kibana/search/SQL-Dump-List --data "@#{kibana_element_dir}/search_SQL-Dump-List.json"
     EOH
 end
 
