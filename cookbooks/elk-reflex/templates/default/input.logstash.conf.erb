@@ -90,14 +90,25 @@ filter {
 				}
 			}
 			
+			# Set unknown program
+			if ! [mdc][program] {
+				mutate {	
+					add_field => { "[mdc][program]" => "NA" }
+				}
+			}
+			
 			# Detect the origin of the program
 			if [mdc][program] =~ /(^H|^RFX|SESMAN)/ {
                 mutate {
                     add_field => { "origin" => "standard" }
                 }
-			} else if [mdc][program] =~ /(^Wagon|^Adelia|PROCMN|CONSOL)/ {
+			} else if [mdc][program] =~ /(^Wagon|^Adelia|PROCMN|CONSOL|GarbageSession)/ {
                 mutate {
                     add_field => { "origin" => "adelia" }
+                }
+			} else if [mdc][program] == "NA" {
+                mutate {
+                    add_field => { "origin" => "undefined" }
                 }
 			} else {
                 mutate {

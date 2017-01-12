@@ -5,13 +5,184 @@
   "style": "dark",
   "timezone": "browser",
   "editable": true,
-  "hideControls": false,
   "sharedCrosshair": false,
+  "hideControls": false,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": "Collectd",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Server Name",
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"java.lang_value\" WITH KEY = \"host\"",
+        "refresh": 1,
+        "type": "query",
+        "regex": "",
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "auto": true,
+        "auto_count": 300,
+        "auto_min": "10s",
+        "current": {
+          "text": "10s",
+          "value": "10s"
+        },
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "interval",
+        "options": [
+          {
+            "text": "auto",
+            "value": "$__auto_interval",
+            "selected": false
+          },
+          {
+            "text": "10s",
+            "value": "10s",
+            "selected": true
+          },
+          {
+            "text": "1m",
+            "value": "1m",
+            "selected": false
+          },
+          {
+            "text": "10m",
+            "value": "10m",
+            "selected": false
+          },
+          {
+            "text": "30m",
+            "value": "30m",
+            "selected": false
+          },
+          {
+            "text": "1h",
+            "value": "1h",
+            "selected": false
+          },
+          {
+            "text": "6h",
+            "value": "6h",
+            "selected": false
+          },
+          {
+            "text": "12h",
+            "value": "12h",
+            "selected": false
+          },
+          {
+            "text": "1d",
+            "value": "1d",
+            "selected": false
+          }
+        ],
+        "query": "10s,1m,10m,30m,1h,6h,12h,1d",
+        "refresh": 2,
+        "type": "interval",
+        "label": ""
+      },
+      {
+        "current": {},
+        "datasource": "${DS_COLLECTD}",
+        "hide": 2,
+        "includeAll": false,
+        "multi": true,
+        "name": "isWebServer",
+        "options": [],
+        "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-serveree\\-/ AND time > now() - 30s fill(null)",
+        "refresh": 1,
+        "regex": "",
+        "type": "query",
+        "useTags": false,
+        "label": null,
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      },
+      {
+        "current": {},
+        "datasource": "${DS_COLLECTD}",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "isBusinessServer",
+        "options": [],
+        "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^business\\-server\\-/ AND time > now() - 30s fill(null)",
+        "refresh": 1,
+        "type": "query",
+        "useTags": false,
+        "label": null,
+        "regex": "",
+        "sort": 0,
+        "allValue": null,
+        "tagsQuery": null,
+        "tagValuesQuery": null
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "10s",
+  "schemaVersion": 13,
+  "version": 0,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Kibana",
+      "tooltip": "Access Kibana interface",
+      "type": "link",
+      "url": "http://localhost:5601/app/kibana#/dashboard/DashboardReflex"
+    }
+  ],
+  "gnetId": null,
   "rows": [
     {
-      "collapse": false,
-      "editable": true,
-      "height": 289.54998779296875,
+      "title": "System",
       "panels": [
         {
           "bgColor": null,
@@ -29,13 +200,11 @@
           "editable": true,
           "error": false,
           "id": 11,
-          "isNew": true,
           "links": [],
           "mode": "time",
           "offsetFromUtc": null,
           "offsetFromUtcMinutes": null,
-          "repeatIteration": 1479384397076,
-          "scopedVars": {},
+          "repeatIteration": 1479730138734,
           "span": 1.1919189197747793,
           "timeSettings": {
             "customFormat": "HH:mm:ss",
@@ -54,7 +223,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "format": "none",
@@ -67,7 +236,6 @@
           },
           "id": 15,
           "interval": "",
-          "isNew": true,
           "links": [],
           "mappingType": 2,
           "mappingTypes": [
@@ -99,8 +267,7 @@
               "to": "null"
             }
           ],
-          "repeatIteration": 1479384397076,
-          "scopedVars": {},
+          "repeatIteration": 1479730138734,
           "span": 1,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -188,7 +355,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "format": "none",
@@ -201,7 +368,6 @@
           },
           "id": 16,
           "interval": ">10s",
-          "isNew": true,
           "links": [],
           "mappingType": 2,
           "mappingTypes": [
@@ -233,8 +399,7 @@
               "to": "null"
             }
           ],
-          "repeatIteration": 1479384397076,
-          "scopedVars": {},
+          "repeatIteration": 1479730138734,
           "span": 1.174320236908342,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -322,7 +487,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -336,7 +501,6 @@
           },
           "id": 9,
           "interval": null,
-          "isNew": true,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -363,8 +527,7 @@
               "to": "null"
             }
           ],
-          "repeatIteration": 1479384397076,
-          "scopedVars": {},
+          "repeatIteration": 1479730138734,
           "span": 1.857322405571718,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -444,7 +607,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -458,7 +621,6 @@
           },
           "id": 10,
           "interval": null,
-          "isNew": true,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -485,8 +647,7 @@
               "to": "null"
             }
           ],
-          "repeatIteration": 1479384397076,
-          "scopedVars": {},
+          "repeatIteration": 1479730138734,
           "span": 1.8932528316226462,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -554,7 +715,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -568,7 +729,6 @@
           },
           "id": 20,
           "interval": null,
-          "isNew": true,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -595,6 +755,7 @@
               "to": "null"
             }
           ],
+          "repeatIteration": 1479730138734,
           "span": 1.2238493723849366,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -621,6 +782,8 @@
               ],
               "measurement": "mem",
               "policy": "default",
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^C/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -637,9 +800,7 @@
                   }
                 ]
               ],
-              "tags": [],
-              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^C/ AND $timeFilter GROUP BY time($interval) fill(null)",
-              "rawQuery": true
+              "tags": []
             }
           ],
           "thresholds": "80,90",
@@ -664,7 +825,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -678,7 +839,6 @@
           },
           "id": 21,
           "interval": null,
-          "isNew": true,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -705,6 +865,7 @@
               "to": "null"
             }
           ],
+          "repeatIteration": 1479730138734,
           "span": 1.2736124634858825,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -731,6 +892,8 @@
               ],
               "measurement": "mem",
               "policy": "default",
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^D/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -747,9 +910,7 @@
                   }
                 ]
               ],
-              "tags": [],
-              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^D/ AND $timeFilter GROUP BY time($interval) fill(null)",
-              "rawQuery": true
+              "tags": []
             }
           ],
           "thresholds": "80,90",
@@ -774,7 +935,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -788,7 +949,6 @@
           },
           "id": 22,
           "interval": null,
-          "isNew": true,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -815,6 +975,7 @@
               "to": "null"
             }
           ],
+          "repeatIteration": 1479730138734,
           "span": 1.3771179709973196,
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
@@ -841,6 +1002,8 @@
               ],
               "measurement": "mem",
               "policy": "default",
+              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^\\// AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
               "select": [
@@ -857,9 +1020,7 @@
                   }
                 ]
               ],
-              "tags": [],
-              "query": "SELECT mean(\"used_percent\") FROM \"disk\" WHERE host =~ /^$host/ AND path =~ /^\\// AND $timeFilter GROUP BY time($interval) fill(null)",
-              "rawQuery": true
+              "tags": []
             }
           ],
           "thresholds": "80,90",
@@ -876,39 +1037,26 @@
           "valueName": "avg"
         }
       ],
-      "repeat": "isWebServer",
-      "scopedVars": {
-        "isWebServer": {
-          "text": "None",
-          "value": "",
-          "isNone": true,
-          "selected": true
-        }
-      },
       "showTitle": true,
-      "title": "System"
+      "titleSize": "h6",
+      "height": 289.54998779296875,
+      "repeat": "isWebServer",
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
     },
     {
       "title": "SYSTEM CPU Details",
-      "height": "250px",
-      "editable": true,
-      "collapse": true,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "editable": true,
           "error": false,
           "fill": 0,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 7,
-          "isNew": true,
           "legend": {
             "alignAsTable": false,
             "avg": false,
@@ -928,7 +1076,6 @@
           "points": false,
           "renderer": "flot",
           "repeatIteration": 1479384397076,
-          "scopedVars": {},
           "seriesOverrides": [],
           "span": 12,
           "stack": false,
@@ -1078,7 +1225,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -1097,34 +1247,32 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         }
       ],
-      "showTitle": true
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": "250px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": true
     },
     {
       "title": "SYSTEM MEM Details",
-      "height": "250px",
-      "editable": true,
-      "collapse": true,
       "panels": [
         {
           "aliasColors": {
             "total": "#BF1B00"
           },
           "bars": false,
-          "datasource": "Telegraf",
+          "datasource": "${DS_TELEGRAF}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 17,
-          "isNew": true,
           "legend": {
             "alignAsTable": false,
             "avg": false,
@@ -1144,7 +1292,6 @@
           "points": false,
           "renderer": "flot",
           "repeatIteration": 1479384397076,
-          "scopedVars": {},
           "seriesOverrides": [],
           "span": 12,
           "stack": false,
@@ -1250,7 +1397,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -1269,31 +1419,30 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         }
       ],
-      "showTitle": true
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": "250px",
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": true
     },
     {
-      "collapse": false,
-      "editable": true,
-      "height": 231.14996337890625,
+      "title": "Web Server - Wagon",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 18,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -1443,7 +1592,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -1462,23 +1614,18 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         },
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 19,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -1618,7 +1765,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -1637,23 +1787,30 @@
               "min": 0,
               "show": true
             }
-          ]
-        },
+          ],
+          "thresholds": []
+        }
+      ],
+      "showTitle": true,
+      "titleSize": "h6",
+      "height": 232.57501220703125,
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
+    {
+      "title": "Web Server - Tomcat",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 5,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -1672,16 +1829,8 @@
           "points": false,
           "renderer": "flot",
           "repeat": "isWebServer",
-          "scopedVars": {
-            "isWebServer": {
-              "text": "None",
-              "value": "",
-              "isNone": true,
-              "selected": true
-            }
-          },
           "seriesOverrides": [],
-          "span": null,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1845,7 +1994,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -1864,23 +2016,18 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         },
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 6,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -1899,7 +2046,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 4.152693361418018,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -2062,7 +2209,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -2081,23 +2231,18 @@
               "min": 0,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         },
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 2,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -2116,7 +2261,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 3.8057008368200833,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -2228,7 +2373,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -2247,32 +2395,30 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         }
       ],
       "showTitle": true,
-      "title": "Wagon"
+      "titleSize": "h6",
+      "height": 211,
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
     },
     {
-      "collapse": false,
-      "editable": true,
-      "height": 225.9999755859376,
+      "title": "Business Server",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 14,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -2291,7 +2437,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 3.9906116948466916,
+          "span": 6.0472278036333025,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -2454,7 +2600,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -2473,23 +2622,18 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         },
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "Collectd",
+          "datasource": "${DS_COLLECTD}",
           "editable": true,
           "error": false,
           "fill": 1,
-          "grid": {
-            "threshold1": null,
-            "threshold1Color": "rgba(216, 200, 27, 0.27)",
-            "threshold2": null,
-            "threshold2Color": "rgba(234, 112, 112, 0.22)"
-          },
+          "grid": {},
           "id": 13,
-          "isNew": true,
           "legend": {
             "avg": false,
             "current": false,
@@ -2508,7 +2652,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 4.1621861158554525,
+          "span": 5.952772196366697,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -2671,7 +2815,10 @@
           },
           "type": "graph",
           "xaxis": {
-            "show": true
+            "show": true,
+            "mode": "time",
+            "name": null,
+            "values": []
           },
           "yaxes": [
             {
@@ -2690,166 +2837,17 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "thresholds": []
         }
       ],
       "showTitle": true,
-      "title": "Business Server"
+      "titleSize": "h6",
+      "height": 223.9999877929688,
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
     }
-  ],
-  "time": {
-    "from": "now-6h",
-    "to": "now"
-  },
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
-  "templating": {
-    "list": [
-      {
-        "current": {},
-        "datasource": "Collectd",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Server Name",
-        "multi": true,
-        "name": "host",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM \"java.lang_value\" WITH KEY = \"host\"",
-        "refresh": 1,
-        "type": "query"
-      },
-      {
-        "auto": true,
-        "auto_count": 300,
-        "auto_min": "10s",
-        "current": {
-          "text": "10s",
-          "value": "10s"
-        },
-        "datasource": null,
-        "hide": 0,
-        "includeAll": false,
-        "multi": false,
-        "name": "interval",
-        "options": [
-          {
-            "selected": false,
-            "text": "auto",
-            "value": "$__auto_interval"
-          },
-          {
-            "selected": true,
-            "text": "10s",
-            "value": "10s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "12h",
-            "value": "12h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          }
-        ],
-        "query": "10s,1m,10m,30m,1h,6h,12h,1d",
-        "refresh": 0,
-        "type": "interval"
-      },
-      {
-        "current": {},
-        "datasource": "Collectd",
-        "hide": 2,
-        "includeAll": false,
-        "multi": true,
-        "name": "isWebServer",
-        "options": [],
-        "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^web\\-serveree\\-/ AND time > now() - 30s fill(null)",
-        "refresh": 1,
-        "regex": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {},
-        "datasource": "Collectd",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "isBusinessServer",
-        "options": [],
-        "query": "SELECT count(\"value\") FROM \"java.lang_value\" WHERE \"host\" =~ /^$host$/ AND \"instance\" =~ /^business\\-server\\-/ AND time > now() - 30s fill(null)",
-        "refresh": 1,
-        "type": "query",
-        "useTags": false
-      }
-    ]
-  },
-  "annotations": {
-    "list": []
-  },
-  "schemaVersion": 12,
-  "version": 5,
-  "links": [
-    {
-      "icon": "external link",
-      "includeVars": false,
-      "tags": [],
-      "targetBlank": true,
-      "title": "Kibana",
-      "tooltip": "Access Kibana interface",
-      "type": "link",
-      "url": "http://localhost:5601/app/kibana#/dashboard/DashboardReflex"
-    }
-  ],
-  "gnetId": null
+  ]
 }
