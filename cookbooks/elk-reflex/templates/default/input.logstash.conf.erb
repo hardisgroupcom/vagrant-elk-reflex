@@ -63,13 +63,13 @@ filter {
 			
 			# Detect SQL table
 			grok {
-			  match=> { "sql_request" => "(select|delete)\s+from\s+%{DATA:sql_table}\s+" }
+			  match=> { "sql_request" => "(select|delete|SELECT|DELETE)\s+.*from\s+%{DATA:sql_table}\s+" }
 			}
 			grok {
-			  match=> { "sql_request" => "update\s+%{DATA:sql_table}\s+" }
+			  match=> { "sql_request" => "(update|UPDATE)\s+%{DATA:sql_table}\s+" }
 			}
 			grok {
-			  match=> { "sql_request" => "insert\s+into\s+%{DATA:sql_table}\s+" }
+			  match=> { "sql_request" => "(insert\s+into|INSERT\s+INTO)\s+%{DATA:sql_table}\s+" }
 			}
 			
 			# Detect SQL error message
@@ -98,11 +98,11 @@ filter {
 			}
 			
 			# Detect the origin of the program
-			if [mdc][program] =~ /(^H|^RFX|SESMAN)/ {
+			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AWSGTS|^PROCMN|^CONGUI)/ {
                 mutate {
                     add_field => { "origin" => "standard" }
                 }
-			} else if [mdc][program] =~ /(^Wagon|^Adelia|PROCMN|CONSOL|GarbageSession)/ {
+			} else if [mdc][program] =~ /(^Wagon|^Adelia|GarbageSession|^Mw)/ {
                 mutate {
                     add_field => { "origin" => "adelia" }
                 }

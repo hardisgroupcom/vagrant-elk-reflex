@@ -59,6 +59,34 @@
 				  "wagonSessionId" : {
 					"index" : "not_analyzed",
 					"type" : "string"
+				  },
+				  "clientAdressIp" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "clientId" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "clientProcessId" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "clientProcessName" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "serverId" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "serverPort" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "serverTimeout" : {
+					"index" : "not_analyzed",
+					"type" : "string"
 				  }
 				}
 			  },
