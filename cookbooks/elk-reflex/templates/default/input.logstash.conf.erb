@@ -98,7 +98,7 @@ filter {
 			}
 			
 			# Detect the origin of the program
-			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AWSGTS|^PROCMN|^CONGUI)/ {
+			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AWSGTS|^PROCMN|CONGUI|MDWERW|SVCERW)/ {
                 mutate {
                     add_field => { "origin" => "standard" }
                 }
