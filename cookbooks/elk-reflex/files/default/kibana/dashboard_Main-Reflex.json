@@ -2,13 +2,13 @@
   "title" : "Main Reflex",
   "hits" : 0,
   "description" : "",
-  "panelsJSON" : "[{\"col\":1,\"id\":\"Trace-Activity\",\"panelIndex\":8,\"row\":3,\"size_x\":7,\"size_y\":2,\"type\":\"visualization\"},{\"col\":4,\"id\":\"User-List\",\"panelIndex\":12,\"row\":1,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Top-10-Error-Messages\",\"panelIndex\":13,\"row\":5,\"size_x\":6,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Server-Role\",\"panelIndex\":15,\"row\":1,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Error-Number\",\"panelIndex\":16,\"row\":1,\"size_x\":1,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"level\",\"role\",\"message\"],\"id\":\"Message-List\",\"panelIndex\":19,\"row\":5,\"size_x\":6,\"size_y\":5,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":8,\"id\":\"Trace-Origin\",\"panelIndex\":21,\"row\":1,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"}]",
+  "panelsJSON" : "[{\"col\":1,\"id\":\"Server-Role\",\"panelIndex\":15,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Error-Number\",\"panelIndex\":16,\"row\":1,\"size_x\":1,\"size_y\":2,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Programs\",\"panelIndex\":20,\"row\":1,\"size_x\":4,\"size_y\":4,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Top-10-Errors\",\"panelIndex\":21,\"row\":5,\"size_x\":6,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"level\",\"role\",\"message\"],\"id\":\"Traces\",\"panelIndex\":22,\"row\":5,\"size_x\":6,\"size_y\":5,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":1,\"id\":\"Activity\",\"panelIndex\":23,\"row\":3,\"size_x\":5,\"size_y\":2,\"type\":\"visualization\"},{\"col\":6,\"id\":\"Users\",\"panelIndex\":24,\"row\":1,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"}]",
   "optionsJSON" : "{\"darkTheme\":true}",
-  "uiStateJSON" : "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#614D93\",\"web-server\":\"#0A50A1\",\"wms-app\":\"#508642\"},\"legendOpen\":true}},\"P-21\":{\"vis\":{\"colors\":{\"adelia\":\"#629E51\",\"custom\":\"#EAB839\",\"standard\":\"#052B51\"}}},\"P-8\":{\"vis\":{\"colors\":{\"DEBUG\":\"#CFFAFF\",\"ERROR\":\"#BF1B00\",\"INFO\":\"#0A50A1\",\"WARN\":\"#E5AC0E\"}}}}",
+  "uiStateJSON" : "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#614D93\",\"web-server\":\"#0A50A1\",\"wms-app\":\"#508642\"},\"legendOpen\":true}}}",
   "version" : 1,
   "timeRestore" : true,
   "timeTo" : "now",
-  "timeFrom" : "now-15m",
+  "timeFrom" : "now-1h",
   "kibanaSavedObjectMeta" : {
     "searchSourceJSON" : "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
   }

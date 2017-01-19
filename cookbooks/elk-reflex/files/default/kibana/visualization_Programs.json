@@ -1,0 +1,10 @@
+{
+  "title" : "Programs",
+  "visState" : "{\"title\":\"Trace Origin\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"origin\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Origin\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"mdc.program\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Program\"}}],\"listeners\":{}}",
+  "uiStateJSON" : "{}",
+  "description" : "",
+  "version" : 1,
+  "kibanaSavedObjectMeta" : {
+    "searchSourceJSON" : "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[{\"meta\":{\"index\":\"logstash-*\",\"key\":\"mdc.username\",\"value\":\"aguerrero\",\"disabled\":false,\"negate\":false,\"alias\":null},\"query\":{\"match\":{\"mdc.username\":{\"query\":\"aguerrero\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"index\":\"logstash-*\",\"key\":\"source_host\",\"value\":\"SRVDTV9\",\"disabled\":false,\"negate\":false,\"alias\":null},\"query\":{\"match\":{\"source_host\":{\"query\":\"SRVDTV9\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":true,\"index\":\"logstash-*\",\"key\":\"mdc.program\",\"value\":\"CFGPAR\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"mdc.program\":{\"query\":\"CFGPAR\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":true,\"index\":\"logstash-*\",\"key\":\"mdc.program\",\"value\":\"WagonApplicationKiller\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"mdc.program\":{\"query\":\"WagonApplicationKiller\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}]}"
+  }
+}

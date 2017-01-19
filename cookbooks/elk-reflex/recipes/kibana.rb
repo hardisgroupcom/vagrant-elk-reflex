@@ -32,7 +32,7 @@ end
 bash 'kibana creating searches' do
   code <<-EOH
 curl -XPOST #{url_elasticsearch}/.kibana/search/Error-List --data "@#{kibana_element_dir}/search_Error-List.json"
-curl -XPOST #{url_elasticsearch}/.kibana/search/Message-List --data "@#{kibana_element_dir}/search_Message-List.json"
+curl -XPOST #{url_elasticsearch}/.kibana/search/Traces --data "@#{kibana_element_dir}/search_Traces.json"
 curl -XPOST #{url_elasticsearch}/.kibana/search/SQL-Dump-List --data "@#{kibana_element_dir}/search_SQL-Dump-List.json"
     EOH
 end
@@ -40,12 +40,12 @@ end
 
 bash 'kibana creating visualizations' do
   code <<-EOH
-curl -XPOST #{url_elasticsearch}/.kibana/visualization/Trace-Activity --data "@#{kibana_element_dir}/visualization_Trace-Activity.json"
-curl -XPOST #{url_elasticsearch}/.kibana/visualization/Top-10-Error-Messages --data "@#{kibana_element_dir}/visualization_Top-10-Error-Messages.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Activity --data "@#{kibana_element_dir}/visualization_Activity.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Top-10-Errors --data "@#{kibana_element_dir}/visualization_Top-10-Errors.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/Error-Number --data "@#{kibana_element_dir}/visualization_Error-Number.json"
-curl -XPOST #{url_elasticsearch}/.kibana/visualization/User-List --data "@#{kibana_element_dir}/visualization_User-List.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Users --data "@#{kibana_element_dir}/visualization_Users.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/Server-Role --data "@#{kibana_element_dir}/visualization_Server-Role.json"
-curl -XPOST #{url_elasticsearch}/.kibana/visualization/Trace-Origin --data "@#{kibana_element_dir}/visualization_Trace-Origin.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Programs --data "@#{kibana_element_dir}/visualization_Programs.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Cursor --data "@#{kibana_element_dir}/visualization_SQL-Cursor.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Dump-Repartition --data "@#{kibana_element_dir}/visualization_SQL-Dump-Repartition.json"
     EOH
