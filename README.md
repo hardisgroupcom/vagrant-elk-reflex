@@ -117,7 +117,7 @@ In order to use this configuration :
 	-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=/path/to/jcollectd/wagon-jcollectd.properties;
 	```
 
-*add the following parameters to your batch-server JVM (jmiddleware) : 
+* add the following parameters to your batch-server JVM (jmiddleware) : 
 
 	```
 	-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=/path/to/jcollectd/jmiddleware-jcollectd.properties
