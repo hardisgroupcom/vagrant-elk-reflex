@@ -56,7 +56,15 @@
 					"index" : "not_analyzed",
 					"type" : "string"
 				  },
+				  "wagonNodeId" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
 				  "wagonSessionId" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "desktopApplication" : {
 					"index" : "not_analyzed",
 					"type" : "string"
 				  },
@@ -102,6 +110,28 @@
 					"type" : "string"
 				  },
 				  "stacktrace" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  }
+				}
+			  },
+
+			  "job" : {
+				"type" : "object",
+				"properties" : {
+				  "id" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "type" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "duration" : {
+					"index" : "not_analyzed",
+					"type" : "integer"
+				  },
+				  "param" : {
 					"index" : "not_analyzed",
 					"type" : "string"
 				  }
