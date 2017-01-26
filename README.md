@@ -1,4 +1,4 @@
-# chef-vagrant-elk-reflex
+# vagrant-elk-reflex
 
 
 This vagrant box installs a ready to use monitoring stack on your machine.
@@ -21,9 +21,9 @@ This ELK stack is preconfigured for Reflex Web.
 
 ## Prerequisites
 
-[VirtualBox](https://www.virtualbox.org/) 
-[Vagrant](http://www.vagrantup.com/) (minimum version 1.6)
-[Git](https://git-scm.com/)
+* [VirtualBox](https://www.virtualbox.org/) 
+* [Vagrant](http://www.vagrantup.com/) (minimum version 1.6)
+* [Git](https://git-scm.com/)
 
 
 ## Get the stack
@@ -41,13 +41,16 @@ A directory named `vagrant-elk-reflex` containing the monitoring stack is create
 ### Memory allocation
 
 By default, memory allocated to the virtual machine is 2 GB.
+
 To update this value, edit file `Vagrantfile` line `vb.memory`.
 
 
 ### Redis configuration
 
 By default, the password defined to Redis is `changeMe`.
+
 To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to set :
+
 `default['elk-hardis']['redis_password']` - Password used by Redis (and Logstash)
 
 
@@ -70,17 +73,17 @@ To get help about vagrant usage run :
 
 The monitoring stack is now ready to be use.
 
-*Elasticsearch is available on the host machine at [http://localhost:9200/](http://localhost:9200/) 
+* Elasticsearch is available on the host machine at [http://localhost:9200/](http://localhost:9200/) 
 
-*Kibana is available on the host machine at [http://localhost:5601/](http://localhost:5601/)
+* Kibana is available on the host machine at [http://localhost:5601/](http://localhost:5601/)
 
-*Grafana  is available on the host machine at [http://localhost:3000/](http://localhost:3000/)
+* Grafana  is available on the host machine at [http://localhost:3000/](http://localhost:3000/)
  
-*Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://localhost:6379)
+* Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://localhost:6379)
 
-*InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826)
+* InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826)
 
-*InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
+* InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
 
 
 You can collect any log4j to redis by using [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
@@ -100,15 +103,21 @@ Log4j trace configuration is explained into the infrastructure guide of the prod
 ### Jcollectd
 
 A jcollectd configuration ready to be used for Reflex Web is provided in `external/jcollectd` directory.
+
 This configuration allows Reflex Web JVMs to send metrics to the monitoring stack.
 
 In order to use this configuration :
-	*copy this directory on your Reflex Web server
-	*add the following parameters to your web-server JVM : 
+
+	* copy this directory on your Reflex Web server
+
+	* add the following parameters to your web-server JVM : 
+
 		```
 		-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=/path/to/jcollectd/wagon-jcollectd.properties;
 		```
+
 	*add the following parameters to your batch-server JVM (jmiddleware) : 
+
 		```
 		-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=/path/to/jcollectd/jmiddleware-jcollectd.properties
 		```
