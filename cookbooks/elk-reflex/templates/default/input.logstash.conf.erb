@@ -119,19 +119,23 @@ filter {
 
 			# Aggregate jmiddleware submitted job types
 			if [role] == "jmiddleware" {
-				if [logger_name] == "com.hardis.reflexcs.HFSOU2.HFSOU2VR" {
+				if [logger_name] == "com.hardis.reflexcs.HFTRAS.HFTRAS" {
 					if [message] =~/^JOB_DURATION_DATE/ {
 						grok {
-						  match=> { "message" => "jobid=(?<jobId>[^,]*),type=(?<jobType>[^,]*),duration=(?<jobDuration>[^,]*),param=(?<jobParam>.*)$" }
+						  match=> { "message" => "jobid=(?<jobId>[^,]*),type=(?<jobType>[^,]*),duration=(?<jobDuration>[^,]*),metric=(?<jobMetric>[^,]*),metric_unit=(?<jobUnit>[^,]*),param=(?<jobParam>.*)$" }
 						}
 						mutate {
 							add_field => { "[job][id]" => "%{jobId}" }
 							remove_field => [ "jobId" ]
 							add_field => { "[job][type]" => "%{jobType}" }
 							remove_field => [ "jobType" ]
-							add_field => { "[job][id]" => "%{jobDuration}" }
+							add_field => { "[job][duration]" => "%{jobDuration}" }
 							remove_field => [ "jobDuration" ]
-							add_field => { "[job][id]" => "%{jobParam}" }
+							add_field => { "[job][metric]" => "%{jobMetric}" }
+							remove_field => [ "jobMetric" ]
+							add_field => { "[job][unit]" => "%{jobUnit}" }
+							remove_field => [ "jobUnit" ]
+							add_field => { "[job][param]" => "%{jobParam}" }
 							remove_field => [ "jobParam" ]
 						}
 					}

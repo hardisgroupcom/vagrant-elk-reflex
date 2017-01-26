@@ -131,6 +131,14 @@
 					"index" : "not_analyzed",
 					"type" : "integer"
 				  },
+				  "metric" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "unit" : {
+					"index" : "not_analyzed",
+					"type" : "integer"
+				  },
 				  "param" : {
 					"index" : "not_analyzed",
 					"type" : "string"
