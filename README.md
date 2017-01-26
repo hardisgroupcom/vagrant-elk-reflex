@@ -2,6 +2,7 @@
 
 
 This vagrant box installs a ready to use monitoring stack on your machine.
+
 This ELK stack is preconfigured for Reflex Web.
 
  This stack embeds :
@@ -108,19 +109,19 @@ This configuration allows Reflex Web JVMs to send metrics to the monitoring stac
 
 In order to use this configuration :
 
-	* copy this directory on your Reflex Web server
+* copy this directory on your Reflex Web server
 
-	* add the following parameters to your web-server JVM : 
+* add the following parameters to your web-server JVM : 
 
-		```
-		-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=/path/to/jcollectd/wagon-jcollectd.properties;
-		```
+	```
+	-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=/path/to/jcollectd/wagon-jcollectd.properties;
+	```
 
-	*add the following parameters to your batch-server JVM (jmiddleware) : 
+*add the following parameters to your batch-server JVM (jmiddleware) : 
 
-		```
-		-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=/path/to/jcollectd/jmiddleware-jcollectd.properties
-		```
+	```
+	-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=/path/to/jcollectd/jmiddleware-jcollectd.properties
+	```
 
 
 ## Auto start
