@@ -126,7 +126,32 @@ In order to use this configuration :
 
 ## Auto start
 
-To start the monitoring stack automatically on Windows, you can use [VBoxVmService](http://vboxvmservice.sourceforge.net/).
+### Windows
+
+To automatically start the monitoring stack on a Windows machine :
+
+* copy the file `external\startReflexElkStack.bat` into directory `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\`.
+
+* edit the script file to define the location of the vagrant-elk-reflex project.
+
+The monitoring stack is automatically started when you start your machine.
+
+
+### Linux
+
+To automatically start the monitoring stack on a Linux machine :
+
+* copy the file `external/startReflexElkStack.sh` into directory `/etc/profile.d`
+
+* make the script executable : `chmod +x startReflexElkStack.sh`
+
+* edit the script file to define the location of the vagrant-elk-reflex project.
+
+The monitoring stack is automatically started when you start your machine.
+
+
+## Update
+
 
 
 ## Dependencies
