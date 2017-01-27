@@ -68,7 +68,7 @@
 					"index" : "not_analyzed",
 					"type" : "string"
 				  },
-				  "clientAdressIp" : {
+				  "clientAddressIp" : {
 					"index" : "not_analyzed",
 					"type" : "string"
 				  },
