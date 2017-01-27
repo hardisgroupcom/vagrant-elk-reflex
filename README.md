@@ -10,8 +10,8 @@ This ELK stack is preconfigured for Reflex Web.
  * Logstash 2.4.0
  * ElasticSearch 2.4.1
  * Kibana 4.6.1
- * InfluxDB 1.0.2
- * Grafana 3.1.1
+ * InfluxDB 1.1.1
+ * Grafana 4.0.2
 
 
 ## Limitation
@@ -152,6 +152,13 @@ The monitoring stack is automatically started when you start your machine.
 
 ## Update
 
+This project is versionned using Git.
+
+In order to update your local version, run `git pull` on the master branch.
+
+To update the vagrant box, run :
+* `vagrant provision`       if the monitoring stack is already started
+* `vagrant up --provision`  if the monitoring stack is stopped
 
 
 ## Dependencies
