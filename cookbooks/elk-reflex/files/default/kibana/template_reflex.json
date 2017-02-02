@@ -133,11 +133,11 @@
 				  },
 				  "metric" : {
 					"index" : "not_analyzed",
-					"type" : "string"
+					"type" : "integer"
 				  },
 				  "unit" : {
 					"index" : "not_analyzed",
-					"type" : "integer"
+					"type" : "string"
 				  },
 				  "param" : {
 					"index" : "not_analyzed",

@@ -98,11 +98,11 @@ filter {
 			}
 			
 			# Detect the origin of the program
-			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AW|^PROCMN|CONGUI|MDWERW|SVCERW)/ {
+			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AW|^PROCMN|CONGUI|MDWERW|SVCERW|GSADJB)/ {
                 mutate {
                     add_field => { "origin" => "standard" }
                 }
-			} else if [mdc][program] =~ /(^Wagon|^Adelia|GarbageSession|^Mw)/ {
+			} else if [mdc][program] =~ /(^Wagon|^Adelia|GarbageSession|^Mw|^SessionKiller|SVCPRT|RXADJB)/ {
                 mutate {
                     add_field => { "origin" => "adelia" }
                 }
@@ -116,11 +116,19 @@ filter {
                 }
 			}
 
+			# Rename activeMQ field not supported by ElasticSearch
+			if [activemq.broker] {
+				mutate {
+					add_field => { "activeMQbroker" => "%{activemq.broker}" }
+					remove_field => [ "activemq.broker" ]
+				}
+			}
+
 
 			# Aggregate jmiddleware submitted job types
 			if [role] == "jmiddleware" {
 				if [logger_name] == "com.hardis.reflexcs.HFTRAS.HFTRAS" {
-					if [message] =~/^JOB_DURATION_DATE/ {
+					if [message] =~/^JOB_DURATION_TRACE/ {
 						grok {
 						  match=> { "message" => "jobid=(?<jobId>[^,]*),type=(?<jobType>[^,]*),duration=(?<jobDuration>[^,]*),metric=(?<jobMetric>[^,]*),metric_unit=(?<jobUnit>[^,]*),param=(?<jobParam>.*)$" }
 						}
