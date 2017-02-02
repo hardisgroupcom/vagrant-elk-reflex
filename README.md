@@ -74,20 +74,20 @@ To get help about vagrant usage run :
 
 The monitoring stack is now ready to be use.
 
-* Elasticsearch is available on the host machine at [http://localhost:9200/](http://localhost:9200/) 
+* Elasticsearch is available on the host machine at [http://localhost:9200/](http://localhost:9200/).
 
-* Kibana is available on the host machine at [http://localhost:5601/](http://localhost:5601/)
+* Kibana is available on the host machine at [http://localhost:5601/](http://localhost:5601/). See [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
 
-* Grafana  is available on the host machine at [http://localhost:3000/](http://localhost:3000/)
+* Grafana  is available on the host machine at [http://localhost:3000/](http://localhost:3000/). See [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
  
-* Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://localhost:6379)
+* Redis is collecting data on the host machine at [tcp://localhost:6379](tcp://localhost:6379).
 
-* InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826)
+* InfluxDB is collecting Collectd data on the host machine at [udp://localhost:25826](udp://localhost:25826).
 
-* InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827)
+* InfluxDB is collecting Telegraf data on the host machine at [udp://localhost:25827](udp://localhost:25827).
 
 
-You can collect any log4j to redis by using [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender)
+You can collect any log4j to redis by using [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender).
 
 You can collect any collectd data from [collectd](https://collectd.org) or from a jvm by using [jcollectd](https://github.com/hardisgroupcom/jcollectd).
 
