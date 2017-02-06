@@ -104,7 +104,7 @@ This configuration allows Reflex Web JVMs to send metrics to the monitoring tool
 
 In order to use this configuration :
 
-* download the jcollectd library from `url to be defined`
+* download the jcollectd library from `url from Maven central`
 
 * deploy this library on all Reflex server you would like to monitor. *Do not place this library inside the Reflex product directory path*.
 
