@@ -55,6 +55,14 @@ To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to 
 `default['elk-hardis']['redis_password']` - Password used by Redis (and Logstash)
 
 
+### Retention configuration
+
+By default, the retention duration is 3 days.
+
+To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to set :
+
+`default['elk-hardis']['retention_days_number']` - retention duration in days used by ElasticSearch and InfluxDB.
+
 
 ## Start
 
