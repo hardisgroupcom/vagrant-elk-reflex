@@ -26,7 +26,7 @@ This tool is ready to use **as a standalone stack** :
 
 ## Service
 
-A Reflex Monitoring Tool with advanced features (large scale sizing, high availability, security, authentication, ...) requires supplementary services. Please contact your project manager at Hardis to get a quatotation.
+A Reflex Monitoring Tool with advanced features (large scale sizing, high availability, security, authentication, ...) requires supplementary services. Please contact your project manager at Hardis to get a quotation.
 
 
 ## Prerequisites
@@ -35,9 +35,9 @@ A Reflex Monitoring Tool with advanced features (large scale sizing, high availa
 
 It is strongly recommended to use a dedicated server to install the monitoring tool. And to not install it on a server where a Reflex instance is running.
 
-Hardware virtualization has to be enabled on the server processor.
+Hardware virtualization feature has to be enabled on the server processor.
 
-The disk space usage depends on the number of Reflex server connected, the trace quantity sent and the retention duration configured. It is recommended to start with 50 GB.
+The disk space usage depends on the number of Reflex server connected, the trace quantity sent and the retention duration configured. It is recommended to start with at least 50 GB.
 
 
 ### Software
@@ -78,10 +78,11 @@ The first start takes time (up to 30 minutes according to network bandwidth) bec
 
 The reflex Monitoring Tool is now ready to use with 2 front-end tools : 
 
-* The Reflex server monitoring tool (Grafana) is available on the host machine at [http://localhost:3000/](http://localhost:3000/). See [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
+* The Reflex server monitoring tool (Grafana) is available on the host machine at [http://localhost:3000/](http://localhost:3000/). 
+See [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
 
-* The Reflex trace analysis tool (Kibana) is available on the host machine at [http://localhost:5601/](http://localhost:5601/). See [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
-
+* The Reflex trace analysis tool (Kibana) is available on the host machine at [http://localhost:5601/](http://localhost:5601/app/kibana#/dashboard/Main-Reflex). 
+See [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
 
 
 ## Reflex Web connection
@@ -110,24 +111,32 @@ In order to use this configuration :
 * update Reflex JVM parameters to send collectd metrics : 
 	* On Linux 
 		* For the web server JVMs, update `CATALINA_CUSTOM_PARAM` variable of `conf/unix_rfx_web_config` file to add :
+
 			```
 			-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=$REFLEX_HOME/conf/wagon-jcollectd.properties
 			```
+
 		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/unix_rfx_jdaemon_config` file to add :
+
 			```
 			-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=$REFLEX_HOME/conf/jmiddleware-jcollectd.properties
 			```
+
 		* Restart Reflex services : `reflex_services.sh restart`
 
 	* On Windows
 		* For the web server JVMs, update `CATALINA_CUSTOM_PARAM` variable of `conf/reflex_cloud_service_config.bat` file to add :
+
 			```
 			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=%REFLEX_HOME%\conf\wagon-jcollectd.properties;
 			```
+
 		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/unix_rfx_jdaemon_config.bat` file to add :
+
 			```
 			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=%REFLEX_HOME%\conf\jmiddleware-jcollectd.properties
 			```
+
 		* Uninstall the Reflex services :
 			* Execute `%REFLEX_HOME%\product\bin\reflex_cloud_service_uninstall.bat`
 			* Execute `%REFLEX_HOME%\product\bin\win_rfx_jdaemon_uninstall.bat`
@@ -157,7 +166,7 @@ To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to 
 `default['elk-hardis']['redis_password']` - Password used by Redis (and Logstash)
 
 
-### Retention configuration
+### Data retention configuration
 
 By default, the retention duration of monitoring data is 3 days.
 
@@ -186,6 +195,15 @@ You can collect any log4j to redis by using [log4j-redis-appender](https://githu
 You can collect any collectd data from [collectd](https://collectd.org) or from a jvm by using [jcollectd](https://github.com/hardisgroupcom/jcollectd).
 
 
+## Auto start
+
+### Windows
+
+
+### Linux
+
+
+
 ## Update
 
 ### Deploy new settings
@@ -197,6 +215,7 @@ From the monitoring tool project directory, run :
 * `vagrant up --provision`  if the monitoring stack is stopped
 
 You can get more details about Vagrant commands by running :
+
 	```
 	vagrant help
 	```
