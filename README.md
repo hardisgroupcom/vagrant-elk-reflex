@@ -17,11 +17,10 @@ This tool embeds the following technologies :
 ## Limitation
 This tool is distributed on an **"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**.
 This tool is ready to use **as a standalone stack** :
-
-	* Not designed for a large scale usage
-	* Not securised
-	* No high availability
-	* No authentication
+* Not designed for a large scale usage
+* Not securised
+* No high availability
+* No authentication
 
 
 ## Service
@@ -101,14 +100,16 @@ Jcollectd Reflex configuration files are provided in Reflex product :
 	* conf/jmiddleware-jcollectd.properties
 
 This configuration allows Reflex Web JVMs to send metrics to the monitoring tool.
+	* The server CPU metric does not work on Windows operating system.
+
 
 In order to use this configuration :
 
-* download the jcollectd library from `url from Maven central`
+* Download the jcollectd library from [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ccom.hardis.collectd.jcollectd) repository. Artefact name : `com.hardis.collectd.jcollectd`.
 
-* deploy this library on all Reflex server you would like to monitor. *Do not place this library inside the Reflex product directory path*.
+* Deploy this library on all Reflex server you would like to monitor. *Do not place this library inside the Reflex product directory path*.
 
-* update Reflex JVM parameters to send collectd metrics : 
+* Update Reflex JVM parameters to send collectd metrics : 
 	* On Linux 
 		* For the web server JVMs, update `CATALINA_CUSTOM_PARAM` variable of `conf/unix_rfx_web_config` file to add :
 
@@ -144,6 +145,9 @@ In order to use this configuration :
 			* Execute `%REFLEX_HOME%\product\bin\reflex_cloud_service_install.bat`
 			* Execute `%REFLEX_HOME%\product\bin\win_rfx_jdaemon_install.bat`
 
+* Update jcollectd configuration files (conf/wagon-jcollectd.properties and conf/jmiddleware-jcollectd.properties)
+	* Replace `influxdbServerAddress` by the address of your monitoring tool server.
+	* Replace `influxdbServerPort` by the influxdb port of your monitoring server (influx db default port : 25826)
 
 
 ## Settings
@@ -193,14 +197,6 @@ The back-end tools are configured as follow :
 You can collect any log4j to redis by using [log4j-redis-appender](https://github.com/hardisgroupcom/log4j-redis-appender).
 
 You can collect any collectd data from [collectd](https://collectd.org) or from a jvm by using [jcollectd](https://github.com/hardisgroupcom/jcollectd).
-
-
-## Auto start
-
-### Windows
-
-
-### Linux
 
 
 
