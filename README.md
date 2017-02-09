@@ -211,11 +211,7 @@ From the monitoring tool project directory, run :
 * `vagrant provision`       if the monitoring stack is already started
 * `vagrant up --provision`  if the monitoring stack is stopped
 
-You can get more details about Vagrant commands by running :
-
-	```
-	vagrant help
-	```
+You can get more details about Vagrant commands by running : `vagrant help`
 
 
 ### Get last changes
