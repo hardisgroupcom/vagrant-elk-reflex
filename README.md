@@ -1,5 +1,8 @@
 # Reflex Monitoring Tool
 
+**Release : 1.0.0**. 
+See [Changelog](CHANGELOG.md).
+
 The Reflex Monitoring Tool use Vagrant to install a ready-to-use virtual machine on your server.
 
 This tool embeds the following technologies :
@@ -11,11 +14,9 @@ This tool embeds the following technologies :
  * Grafana 4.0.2
 
 
-## Version
-9.6
-
 ## Limitation
 This tool is distributed on an **"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**.
+
 This tool is ready to use **as a standalone stack** :
 * Not designed for a large scale usage
 * Not securised
