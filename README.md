@@ -100,14 +100,15 @@ Jcollectd Reflex configuration files are provided in Reflex product :
 	* conf/jmiddleware-jcollectd.properties
 
 This configuration allows Reflex Web JVMs to send metrics to the monitoring tool.
-	* The server CPU metric does not work on Windows operating system.
+
+*The server CPU metric does not work on Windows operating system.*
 
 
 In order to use this configuration :
 
-* Download the jcollectd library from [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ccom.hardis.collectd.jcollectd) repository. Artefact name : `com.hardis.collectd.jcollectd`.
+* Download the jcollectd jar library from [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ccom.hardis.collectd.jcollectd) repository. Artefact name : `com.hardis.collectd.jcollectd`.
 
-* Deploy this library on all Reflex server you would like to monitor. *Do not place this library inside the Reflex product directory path*.
+* Deploy this jar file on all Reflex server you would like to monitor. *Do not place this library inside the Reflex product directory path*.
 
 * Update Reflex JVM parameters to send collectd metrics : 
 	* On Linux 
@@ -145,18 +146,18 @@ In order to use this configuration :
 			* Execute `%REFLEX_HOME%\product\bin\reflex_cloud_service_install.bat`
 			* Execute `%REFLEX_HOME%\product\bin\win_rfx_jdaemon_install.bat`
 
-* Update jcollectd configuration files (conf/wagon-jcollectd.properties and conf/jmiddleware-jcollectd.properties)
+* Update jcollectd configuration files (`conf/wagon-jcollectd.properties` and `conf/jmiddleware-jcollectd.properties`)
 	* Replace `influxdbServerAddress` by the address of your monitoring tool server.
 	* Replace `influxdbServerPort` by the influxdb port of your monitoring server (influx db default port : 25826)
 
 
 ## Settings
 
-The following monitoring tool settings can be customized.
+The following settings can be customized.
 
 ### Memory allocation
 
-By default, memory allocated to the virtual machine is 2 GB.
+By default, memory allocated to the virtual machine is **2 GB**.
 
 To update this value, edit file `Vagrantfile` line `vb.memory`.
 
@@ -172,7 +173,7 @@ To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to 
 
 ### Data retention configuration
 
-By default, the retention duration of monitoring data is 3 days.
+By default, the retention duration of monitoring data is **3 days**.
 
 To update this value, edit file `cookbooks/elk-hardis/attributes/default.rb` to set :
 
