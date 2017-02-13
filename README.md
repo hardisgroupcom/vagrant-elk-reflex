@@ -79,10 +79,14 @@ The first start takes time (up to 30 minutes according to network bandwidth) bec
 The reflex Monitoring Tool is now ready to use with 2 front-end tools : 
 
 * The Reflex server monitoring tool (Grafana) is available on the host machine at [http://localhost:3000/](http://localhost:3000/). 
-See [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
+	* Default credentials : `admin / admin`.
+	* Dashboard : Reflex.
+	* Usage guide : [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
 
 * The Reflex trace analysis tool (Kibana) is available on the host machine at [http://localhost:5601/](http://localhost:5601/app/kibana#/dashboard/Main-Reflex). 
-See [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
+	* Dashboard : Main Reflex.
+	* Refresh the web page after the first Reflex server is connected.
+	* Usage guide : [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
 
 
 ## Reflex Web connection
@@ -134,7 +138,7 @@ In order to use this configuration :
 			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=%REFLEX_HOME%\conf\wagon-jcollectd.properties;
 			```
 
-		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/unix_rfx_jdaemon_config.bat` file to add :
+		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/win_rfx_jdaemon_config.bat` file to add :
 
 			```
 			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=%REFLEX_HOME%\conf\jmiddleware-jcollectd.properties
