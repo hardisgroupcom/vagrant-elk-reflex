@@ -120,13 +120,13 @@ In order to use this configuration :
 		* For the web server JVMs, update `CATALINA_CUSTOM_PARAM` variable of `conf/unix_rfx_web_config` file to add :
 
 			```
-			-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=$REFLEX_HOME/conf/wagon-jcollectd.properties
+			-javaagent:/path/to/jcollectd/jcollectd-1.0.3.jar -Djcd.properties=$REFLEX_HOME/conf/wagon-jcollectd.properties
 			```
 
 		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/unix_rfx_jdaemon_config` file to add :
 
 			```
-			-javaagent:/path/to/jcollectd/jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=$REFLEX_HOME/conf/jmiddleware-jcollectd.properties
+			-javaagent:/path/to/jcollectd/jcollectd-1.0.3.jar -Djcd.properties=$REFLEX_HOME/conf/jmiddleware-jcollectd.properties
 			```
 
 		* Restart Reflex services : `reflex_services.sh restart`
@@ -135,13 +135,13 @@ In order to use this configuration :
 		* For the web server JVMs, update `CATALINA_CUSTOM_PARAM` variable of `conf/reflex_cloud_service_config.bat` file to add :
 
 			```
-			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar;-Djcd.properties=%REFLEX_HOME%\conf\wagon-jcollectd.properties;
+			-javaagent:\path\to\jcollectd\jcollectd-1.0.3.jar;-Djcd.properties=%REFLEX_HOME%\conf\wagon-jcollectd.properties;
 			```
 
 		* For the batch server JVMs, update `RFX_CUSTOM_PARAM` variable of `conf/win_rfx_jdaemon_config.bat` file to add :
 
 			```
-			-javaagent:\path\to\jcollectd\jcollectd-hardisgroupcom-1.0.1.jar -Djcd.properties=%REFLEX_HOME%\conf\jmiddleware-jcollectd.properties
+			-javaagent:\path\to\jcollectd\jcollectd-1.0.3.jar -Djcd.properties=%REFLEX_HOME%\conf\jmiddleware-jcollectd.properties
 			```
 
 		* Uninstall the Reflex services :
