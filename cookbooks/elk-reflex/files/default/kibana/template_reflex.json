@@ -40,7 +40,15 @@
 			  "mdc" : {
 				"type" : "object",
 				"properties" : {
+				  "environment" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
 				  "program" : {
+					"index" : "not_analyzed",
+					"type" : "string"
+				  },
+				  "reflex_user" : {
 					"index" : "not_analyzed",
 					"type" : "string"
 				  },
@@ -128,11 +136,9 @@
 					"type" : "string"
 				  },
 				  "duration" : {
-					"index" : "not_analyzed",
 					"type" : "integer"
 				  },
 				  "metric" : {
-					"index" : "not_analyzed",
 					"type" : "integer"
 				  },
 				  "unit" : {
@@ -182,8 +188,7 @@
 				"type" : "string"
 			  },
 			  "sql_nanoTime" : {
-				"index" : "not_analyzed",
-				"type" : "string"
+				"type" : "integer"
 			  },
 			  "sql_code" : {
 				"index" : "not_analyzed",

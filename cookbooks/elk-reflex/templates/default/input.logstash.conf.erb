@@ -10,7 +10,6 @@ input {
 
 
 
-
 filter {
     if [hardis_key] == "reflex" {
 
@@ -98,13 +97,13 @@ filter {
 			}
 			
 			# Detect the origin of the program
-			if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AW|^PROCMN|CONGUI|MDWERW|SVCERW|GSADJB)/ {
-                mutate {
-                    add_field => { "origin" => "standard" }
-                }
-			} else if [mdc][program] =~ /(^Wagon|^Adelia|GarbageSession|^Mw|^SessionKiller|SVCPRT|RXADJB)/ {
+			if [mdc][program] =~ /(^Wagon|^Adelia|GarbageSession|^Mw|^SessionKiller|SVCPRT|RXADJB|SRVMPD|AWSCDF|AWSDBTOOL)/ {
                 mutate {
                     add_field => { "origin" => "adelia" }
+                }
+			} else if [mdc][program] =~ /(^H|^RFX|SESMAN|^TU|^CONSOL|^AW|^PROCMN|CONGUI|MDWERW|SVCERW|GSADJB)/ {
+                mutate {
+                    add_field => { "origin" => "standard" }
                 }
 			} else if [mdc][program] == "NA" {
                 mutate {
@@ -123,7 +122,6 @@ filter {
 					remove_field => [ "activemq.broker" ]
 				}
 			}
-
 
 			# Aggregate jmiddleware submitted job types
 			if [role] == "jmiddleware" {
