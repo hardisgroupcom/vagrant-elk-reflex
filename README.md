@@ -81,12 +81,12 @@ The reflex Monitoring Tool is now ready to use with 2 front-end tools :
 * The Reflex server monitoring tool (Grafana) is available on the host machine at [http://localhost:3000/](http://localhost:3000/). 
 	* Default credentials : `admin / admin`.
 	* Dashboard : Reflex.
-	* Usage guide : [Grafana_usage_guide.pdf](Documentation/Grafana_usage_guide.pdf).
+	* Usage guide : [Grafana_user_guide.pdf](Documentation/Grafana_user_guide.pdf).
 
 * The Reflex trace analysis tool (Kibana) is available on the host machine at [http://localhost:5601/](http://localhost:5601/app/kibana#/dashboard/Main-Reflex). 
 	* Dashboard : Main Reflex.
 	* Refresh the web page after the first Reflex server is connected.
-	* Usage guide : [Kibana_usage_guide.pdf](Documentation/Kibana_usage_guide.pdf).
+	* Usage guide : [Kibana_user_guide.pdf](Documentation/Kibana_user_guide.pdf).
 
 
 ## Reflex Web connection
