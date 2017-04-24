@@ -1,5 +1,5 @@
 {
-  "title" : "Main Reflex",
+  "title" : "Reflex Main Dashboard",
   "hits" : 0,
   "description" : "",
   "panelsJSON" : "[{\"col\":1,\"id\":\"Server-Role\",\"panelIndex\":15,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":8,\"id\":\"Error-Number\",\"panelIndex\":16,\"row\":1,\"size_x\":2,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Programs\",\"panelIndex\":20,\"row\":5,\"size_x\":3,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Top-10-Errors\",\"panelIndex\":21,\"row\":3,\"size_x\":9,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"level\",\"role\",\"message\"],\"id\":\"Traces\",\"panelIndex\":22,\"row\":8,\"size_x\":12,\"size_y\":8,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":3,\"id\":\"Activity\",\"panelIndex\":23,\"row\":1,\"size_x\":5,\"size_y\":2,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Users\",\"panelIndex\":24,\"row\":1,\"size_x\":3,\"size_y\":4,\"type\":\"visualization\"}]",
