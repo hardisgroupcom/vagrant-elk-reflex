@@ -34,6 +34,7 @@ bash 'kibana creating searches' do
 curl -XPOST #{url_elasticsearch}/.kibana/search/Error-List --data "@#{kibana_element_dir}/search_Error-List.json"
 curl -XPOST #{url_elasticsearch}/.kibana/search/Traces --data "@#{kibana_element_dir}/search_Traces.json"
 curl -XPOST #{url_elasticsearch}/.kibana/search/SQL-Dump-List --data "@#{kibana_element_dir}/search_SQL-Dump-List.json"
+curl -XPOST ${url_elasticsearch}/.kibana/search/Trail-Audit --data "@${kibana_element_dir}/search_Trail-Audit.json"
     EOH
 end
 
@@ -56,5 +57,6 @@ bash 'kibana creating dashboard' do
   code <<-EOH
 curl -XPOST #{url_elasticsearch}/.kibana/dashboard/Main-Reflex --data "@#{kibana_element_dir}/dashboard_Main-Reflex.json"
 curl -XPOST #{url_elasticsearch}/.kibana/dashboard/SQL-Dump-Reflex --data "@#{kibana_element_dir}/dashboard_SQL-Dump-Reflex.json"
+curl -XPOST ${url_elasticsearch}/.kibana/dashboard/Session-Audit-Trail --data "@${kibana_element_dir}/dashboard_Session-Audit-Trail.json"
     EOH
 end

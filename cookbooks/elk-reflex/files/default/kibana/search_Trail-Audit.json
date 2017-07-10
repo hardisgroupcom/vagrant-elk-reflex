@@ -1,0 +1,24 @@
+{
+    "title": "Trail Audit",
+    "description": "",
+    "hits": 0,
+    "columns": [
+      "role",
+      "mdc.reflex_user",
+      "mdc.clientAddressIp",
+      "message",
+      "mdc.threadId",
+      "mdc.wagonSessionId",
+      "mdc.jobid",
+      "mdc.clientProcessId",
+      "mdc.clientProcessName"
+    ],
+    "sort": [
+      "@timestamp",
+      "desc"
+    ],
+    "version": 1,
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"index\":\"logstash-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"logstash-*\",\"key\":\"logger_name\",\"value\":\"com.hardis.audit.trail\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"logger_name\":{\"query\":\"com.hardis.audit.trail\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+    }
+}

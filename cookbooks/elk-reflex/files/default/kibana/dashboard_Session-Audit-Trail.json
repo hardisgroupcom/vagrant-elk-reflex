@@ -1,0 +1,15 @@
+{
+    "title": "Reflex Session Audit Trail Dashboard",
+    "hits": 0,
+    "description": "",
+    "panelsJSON": "[\n  {\n    \"col\": 1,\n    \"id\": \"Server-Role\",\n    \"panelIndex\": 15,\n    \"row\": 1,\n    \"size_x\": 2,\n    \"size_y\": 2,\n    \"type\": \"visualization\"\n  },\n  {\n    \"col\": 3,\n    \"id\": \"Activity\",\n    \"panelIndex\": 23,\n    \"row\": 1,\n    \"size_x\": 5,\n    \"size_y\": 2,\n    \"type\": \"visualization\"\n  },\n  {\n    \"col\": 10,\n    \"id\": \"Users\",\n    \"panelIndex\": 24,\n    \"row\": 1,\n    \"size_x\": 3,\n    \"size_y\": 2,\n    \"type\": \"visualization\"\n  },\n  {\n    \"id\": \"Envs\",\n    \"type\": \"visualization\",\n    \"panelIndex\": 25,\n    \"size_x\": 2,\n    \"size_y\": 2,\n    \"col\": 8,\n    \"row\": 1\n  },\n  {\n    \"id\": \"Trail-Audit\",\n    \"type\": \"search\",\n    \"panelIndex\": 26,\n    \"size_x\": 12,\n    \"size_y\": 5,\n    \"col\": 1,\n    \"row\": 3,\n    \"columns\": [\n      \"role\",\n      \"mdc.reflex_user\",\n      \"mdc.clientAddressIp\",\n      \"message\",\n      \"mdc.threadId\",\n      \"mdc.wagonSessionId\",\n      \"mdc.jobid\",\n      \"mdc.clientProcessId\",\n      \"mdc.clientProcessName\"\n    ],\n    \"sort\": [\n      \"@timestamp\",\n      \"desc\"\n    ]\n  }\n]",
+    "optionsJSON": "{\"darkTheme\":true}",
+    "uiStateJSON": "{\"P-15\":{\"vis\":{\"colors\":{\"VMRFXV9TEST1\":\"#614D93\",\"web-server\":\"#0A50A1\",\"wms-app\":\"#508642\"},\"legendOpen\":true}}}",
+    "version": 1,
+    "timeRestore": true,
+    "timeTo": "now/d",
+    "timeFrom": "now/d",
+    "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"logstash-*\",\"key\":\"logger_name\",\"value\":\"com.hardis.audit.trail\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"logger_name\":{\"query\":\"com.hardis.audit.trail\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+    }
+}
