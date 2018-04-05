@@ -49,6 +49,7 @@ curl -XPOST #{url_elasticsearch}/.kibana/visualization/Server-Role --data "@#{ki
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/Programs --data "@#{kibana_element_dir}/visualization_Programs.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Cursor --data "@#{kibana_element_dir}/visualization_SQL-Cursor.json"
 curl -XPOST #{url_elasticsearch}/.kibana/visualization/SQL-Dump-Repartition --data "@#{kibana_element_dir}/visualization_SQL-Dump-Repartition.json"
+curl -XPOST #{url_elasticsearch}/.kibana/visualization/Envs --data "@#{kibana_element_dir}/visualization_Envs.json"
     EOH
 end
 
